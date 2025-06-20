@@ -15,6 +15,18 @@ author = "agent"
 task = "workflow.run"
 args = "Install Dependencies"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Dev Server"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "SvelteKit Server"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Vite Dev Server"
+
 [[workflows.workflow]]
 name = "Install Dependencies"
 author = "agent"
@@ -22,6 +34,33 @@ author = "agent"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "npm install @sveltejs/kit@^2.22.0 @sveltejs/adapter-node@^5.2.12 @sveltejs/vite-plugin-svelte@^5.1.0 svelte@^5.34.7 vite@^6.3.5 lucide-svelte@^0.519.0 express"
+
+[[workflows.workflow]]
+name = "Dev Server"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+waitForPort = 5000
+
+[[workflows.workflow]]
+name = "SvelteKit Server"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx svelte-kit dev --host 0.0.0.0 --port 5000"
+waitForPort = 5000
+
+[[workflows.workflow]]
+name = "Vite Dev Server"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx vite --host 0.0.0.0 --port 5000"
+waitForPort = 5000
 
 [deployment]
 run = ["sh", "-c", "npm install @sveltejs/kit@^2.22.0 @sveltejs/adapter-node@^5.2.12 @sveltejs/vite-plugin-svelte@^5.1.0 svelte@^5.34.7 vite@^6.3.5 lucide-svelte@^0.519.0 express"]
