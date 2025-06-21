@@ -110,6 +110,10 @@ Changelog:
   - Implemented dark/light theme toggle functionality
   - Responsive design with sidebar navigation
   - All pages include proper empty states with user guidance
+  - Refactored upload page JavaScript functions into separate utils.js utility file
+    - Extracted business mapping processing functions
+    - Improved code maintainability and reusability
+    - Created clean separation of concerns between UI and business logic
 - June 20, 2025. Initial setup
 
 ## User Preferences
