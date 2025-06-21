@@ -101,6 +101,15 @@ CostAnalyzer is a modern web application built with SvelteKit for comprehensive 
 ## Changelog
 
 Changelog:
+- June 21, 2025. Complete CostAnalyzer application built with SvelteKit
+  - Created professional dashboard with cost overview cards
+  - Implemented file upload system for CSV, Excel, and JSON files
+  - Built analytics page with charts and detailed insights
+  - Added expense management with filtering and categorization
+  - Created budget planning with category management
+  - Implemented dark/light theme toggle functionality
+  - Responsive design with sidebar navigation
+  - All pages include proper empty states with user guidance
 - June 20, 2025. Initial setup
 
 ## User Preferences
