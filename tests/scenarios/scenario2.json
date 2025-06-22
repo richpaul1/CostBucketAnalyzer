@@ -1,0 +1,288 @@
+{
+    "metaData": {},
+    "resource": {
+        "businessMappings": [
+            {
+                "uuid": "ydjCK0dyTQaIEGBggWNNAg",
+                "name": "Cost Category B",
+                "accountId": "SxuV0ChbRqWGSYClFlMQMQ",
+                "costTargets": [
+                    {
+                        "uuid": "90e46771-34ad-41a6-ae7b-7dc4fb092fb5",
+                        "name": "BucketB-1",
+                        "marginPercentage": null,
+                        "rules": [
+                            {
+                                "viewConditions": [
+                                    {
+                                        "type": "VIEW_ID_CONDITION",
+                                        "viewField": {
+                                            "fieldId": "awsUsageaccountid",
+                                            "fieldName": "Account",
+                                            "identifier": "AWS",
+                                            "identifierName": "AWS"
+                                        },
+                                        "viewOperator": "IN",
+                                        "values": [
+                                            "759984737373",
+                                            "043253718892"
+                                        ]
+                                    },
+                                    {
+                                        "type": "VIEW_ID_CONDITION",
+                                        "viewField": {
+                                            "fieldId": "awsInstancetype",
+                                            "fieldName": "Instance Type",
+                                            "identifier": "AWS",
+                                            "identifierName": "AWS"
+                                        },
+                                        "viewOperator": "IN",
+                                        "values": [
+                                            "t3.micro","t3.small"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "viewConditions": [
+                                    {
+                                        "type": "VIEW_ID_CONDITION",
+                                        "viewField": {
+                                            "fieldId": "awsInstancetype",
+                                            "fieldName": "Instance Type",
+                                            "identifier": "AWS",
+                                            "identifierName": "AWS"
+                                        },
+                                        "viewOperator": "IN",
+                                        "values": [
+                                            "t2.small"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "viewConditions": [
+                                    {
+                                        "type": "VIEW_ID_CONDITION",
+                                        "viewField": {
+                                            "fieldId": "awsInstancetype",
+                                            "fieldName": "Instance Type",
+                                            "identifier": "AWS",
+                                            "identifierName": "AWS"
+                                        },
+                                        "viewOperator": "IN",
+                                        "values": [
+                                            "t2.small"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "1d0ae962-9fae-429c-82b1-a3b5ca15b8c7",
+                        "name": "BucketB-2",
+                        "marginPercentage": null,
+                        "rules": [
+                            {
+                                "viewConditions": [
+                                    {
+                                        "type": "VIEW_ID_CONDITION",
+                                        "viewField": {
+                                            "fieldId": "awsUsageaccountid",
+                                            "fieldName": "Account",
+                                            "identifier": "AWS",
+                                            "identifierName": "AWS"
+                                        },
+                                        "viewOperator": "IN",
+                                        "values": [
+                                            "759984737373"
+                                        ]
+                                    },
+                                    {
+                                        "type": "VIEW_ID_CONDITION",
+                                        "viewField": {
+                                            "fieldId": "awsInstancetype",
+                                            "fieldName": "Instance Type",
+                                            "identifier": "AWS",
+                                            "identifierName": "AWS"
+                                        },
+                                        "viewOperator": "IN",
+                                        "values": [
+                                            "t3.small"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "sharedCosts": null,
+                "unallocatedCost": {
+                    "strategy": "DISPLAY_NAME",
+                    "label": "Unattributed",
+                    "sharingStrategy": null,
+                    "splits": null
+                },
+                "dataSources": [
+                    "AWS"
+                ],
+                "createdAt": 1750535934200,
+                "lastUpdatedAt": 1750535934200,
+                "createdBy": {
+                    "uuid": "9QuY2nN8SJ6teClJPu7bTQ",
+                    "name": "RIchard Paul",
+                    "email": "richard.paul@harness.io",
+                    "externalUserId": null
+                },
+                "lastUpdatedBy": {
+                    "uuid": "9QuY2nN8SJ6teClJPu7bTQ",
+                    "name": "RIchard Paul",
+                    "email": "richard.paul@harness.io",
+                    "externalUserId": null
+                }
+            },
+            {
+                "uuid": "9cBgSkYyQC2KFt-obyPT-Q",
+                "name": "Cost Category A",
+                "accountId": "SxuV0ChbRqWGSYClFlMQMQ",
+                "costTargets": [
+                    {
+                        "uuid": "f575ce95-04c3-45f6-bd1d-c9beac952351",
+                        "name": "BucketA-1",
+                        "marginPercentage": null,
+                        "rules": [
+                            {
+                                "viewConditions": [
+                                    {
+                                        "type": "VIEW_ID_CONDITION",
+                                        "viewField": {
+                                            "fieldId": "awsUsageaccountid",
+                                            "fieldName": "Account",
+                                            "identifier": "AWS",
+                                            "identifierName": "AWS"
+                                        },
+                                        "viewOperator": "IN",
+                                        "values": [
+                                            "043253718892"
+                                        ]
+                                    },
+                                    {
+                                        "type": "VIEW_ID_CONDITION",
+                                        "viewField": {
+                                            "fieldId": "awsInstancetype",
+                                            "fieldName": "Instance Type",
+                                            "identifier": "AWS",
+                                            "identifierName": "AWS"
+                                        },
+                                        "viewOperator": "IN",
+                                        "values": [
+                                            "t3.micro"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "viewConditions": [
+                                    {
+                                        "type": "VIEW_ID_CONDITION",
+                                        "viewField": {
+                                            "fieldId": "awsInstancetype",
+                                            "fieldName": "Instance Type",
+                                            "identifier": "AWS",
+                                            "identifierName": "AWS"
+                                        },
+                                        "viewOperator": "IN",
+                                        "values": [
+                                            "t2.small"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "58e7a180-d2c9-465a-b1a3-39b18164f465",
+                        "name": "BucketA-2",
+                        "marginPercentage": null,
+                        "rules": [
+                            {
+                                "viewConditions": [
+                                    {
+                                        "type": "VIEW_ID_CONDITION",
+                                        "viewField": {
+                                            "fieldId": "awsUsageaccountid",
+                                            "fieldName": "Account",
+                                            "identifier": "AWS",
+                                            "identifierName": "AWS"
+                                        },
+                                        "viewOperator": "IN",
+                                        "values": [
+                                            "043253718892"
+                                        ]
+                                    },
+                                    {
+                                        "type": "VIEW_ID_CONDITION",
+                                        "viewField": {
+                                            "fieldId": "awsInstancetype",
+                                            "fieldName": "Instance Type",
+                                            "identifier": "AWS",
+                                            "identifierName": "AWS"
+                                        },
+                                        "viewOperator": "IN",
+                                        "values": [
+                                            "t3.small"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "viewConditions": [
+                                    {
+                                        "type": "VIEW_ID_CONDITION",
+                                        "viewField": {
+                                            "fieldId": "awsInstancetype",
+                                            "fieldName": "Instance Type",
+                                            "identifier": "AWS",
+                                            "identifierName": "AWS"
+                                        },
+                                        "viewOperator": "IN",
+                                        "values": [
+                                            "t2.small"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "sharedCosts": null,
+                "unallocatedCost": {
+                    "strategy": "DISPLAY_NAME",
+                    "label": "Unattributed",
+                    "sharingStrategy": null,
+                    "splits": null
+                },
+                "dataSources": [
+                    "AWS"
+                ],
+                "createdAt": 1750533820132,
+                "lastUpdatedAt": 1750533820132,
+                "createdBy": {
+                    "uuid": "9QuY2nN8SJ6teClJPu7bTQ",
+                    "name": "RIchard Paul",
+                    "email": "richard.paul@harness.io",
+                    "externalUserId": null
+                },
+                "lastUpdatedBy": {
+                    "uuid": "9QuY2nN8SJ6teClJPu7bTQ",
+                    "name": "RIchard Paul",
+                    "email": "richard.paul@harness.io",
+                    "externalUserId": null
+                }
+            }
+        ],
+        "totalCount": 2
+    },
+    "responseMessages": []
+}

@@ -1,7 +1,7 @@
 <script>
     import { Upload } from 'lucide-svelte';
     import FileUpload from '$lib/components/FileUpload.svelte';
-    import { processMappingFiles, findOverlappingRules } from '$lib/utils.js';
+    import { getCostCategoriesAsJSON, getConflicts } from '$lib/utils.js';
 
     let uploadStatus = null;
     let uploadError = null;
@@ -15,10 +15,10 @@
 
         try {
             // Process the uploaded files to extract mappings
-            const mappings = await processMappingFiles(files);
+            const jsonData = await getCostCategoriesAsJSON(files[0]);
             
             // Find overlapping rules
-            overlapResults = findOverlappingRules(mappings, caseSensitive);
+            overlapResults = getConflicts(jsonData);
 
             uploadStatus = 'success';
         } catch (error) {
@@ -71,28 +71,13 @@
                 <table class="overlap-table">
                     <thead>
                         <tr>
-                            <th>Mapping A (Rule)</th>
-                            <th>Mapping B (Rule)</th>
-                            <th>Overlapping Conditions</th>
+                            <th>Rule Conflicts</th>
                         </tr>
                     </thead>
                     <tbody>
                         {#each overlapResults as result}
                             <tr>
-                                <td>{result.mappingNameA} ({result.ruleIndexA})</td>
-                                <td>{result.mappingNameB} ({result.ruleIndexB})</td>
-                                <td>
-                                    <ul>
-                                        {#each result.conditions as condition}
-                                            <li>
-                                                <strong>Field:</strong> <code>{condition.fieldId}</code><br />
-                                                <strong>Operator:</strong> <code>{condition.viewOperator}</code><br />
-                                                <strong>Values:</strong> {condition.values.join(', ')}<br />
-                                                <strong>Reason:</strong> {condition.reason}
-                                            </li>
-                                        {/each}
-                                    </ul>
-                                </td>
+                                <td>{result}</td>
                             </tr>
                         {/each}
                     </tbody>

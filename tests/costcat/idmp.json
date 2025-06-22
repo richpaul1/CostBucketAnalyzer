@@ -1,0 +1,142 @@
+{
+    "uuid": "6f4584e3-3889-43d7-bc94-4a869ffdd0d2",
+    "name": "idmp",
+    "marginPercentage": null,
+    "rules": [
+        {
+            "viewConditions": [
+                {
+                    "type": "VIEW_ID_CONDITION",
+                    "viewField": {
+                        "fieldId": "qp2XZTSGTiGpL0iQ1o2CpA",
+                        "fieldName": "Support CC",
+                        "identifier": "BUSINESS_MAPPING",
+                        "identifierName": "Cost Categories"
+                    },
+                    "viewOperator": "IN",
+                    "values": [
+                        "idmp related 1",
+                        "idmp related 2"
+                    ]
+                }
+            ]
+        },
+        {
+            "viewConditions": [
+                {
+                    "type": "VIEW_ID_CONDITION",
+                    "viewField": {
+                        "fieldId": "awsUsageaccountid",
+                        "fieldName": "Account",
+                        "identifier": "AWS",
+                        "identifierName": "AWS"
+                    },
+                    "viewOperator": "IN",
+                    "values": [
+                        "Cloud Platform Services (711618289438)",
+                        "sandbox (446063804264)"
+                    ]
+                },
+                {
+                    "type": "VIEW_ID_CONDITION",
+                    "viewField": {
+                        "fieldId": "labels.value",
+                        "fieldName": "user_department",
+                        "identifier": "LABEL",
+                        "identifierName": "label"
+                    },
+                    "viewOperator": "IN",
+                    "values": [
+                        "marketing-services"
+                    ]
+                }
+            ]
+        },
+        {
+            "viewConditions": [
+                {
+                    "type": "VIEW_ID_CONDITION",
+                    "viewField": {
+                        "fieldId": "awsUsageaccountid",
+                        "fieldName": "Account",
+                        "identifier": "AWS",
+                        "identifierName": "AWS"
+                    },
+                    "viewOperator": "IN",
+                    "values": [
+                        "Marketshare Partners EMEA, Ltd. (644238438386)",
+                        "Neustar Media Intelligence - Dev. (078512157827)"
+                    ]
+                }
+            ]
+        },
+        {
+            "viewConditions": [
+                {
+                    "type": "VIEW_ID_CONDITION",
+                    "viewField": {
+                        "fieldId": "gcpProjectId",
+                        "fieldName": "Project",
+                        "identifier": "GCP",
+                        "identifierName": "GCP"
+                    },
+                    "viewOperator": "IN",
+                    "values": [
+                        "idmp-akdb-dev-e1b6",
+                        "idmp-akdb-prod-ae50",
+                        "idmp-akdb-qa-c86a",
+                        "idmp-akdb-rnd-47eb",
+                        "idmp-akdb-stg-375a",
+                        "idmp-aops-dev-7c37",
+                        "idmp-aops-prod-88d9",
+                        "idmp-aops-qa-922b",
+                        "idmp-aops-rnd-ed6b",
+                        "idmp-aops-stg-00aa",
+                        "idmp-devops-dev-a4b4",
+                        "idmp-devops-prod-bb1a",
+                        "idmp-devops-qa-387b",
+                        "idmp-devops-rnd-e67d",
+                        "idmp-dsdk-cs-0b43",
+                        "idmp-dsdk-dev-b0f7",
+                        "idmp-dsdk-dev-transfer-4f78",
+                        "idmp-dsdk-pm-c5f9",
+                        "idmp-dsdk-prod-ae05",
+                        "idmp-dsdk-prod-transfer-5eb5",
+                        "idmp-dsdk-qa-0e95",
+                        "idmp-dsdk-rnd-1b03",
+                        "idmp-dsdk-stg-6e83",
+                        "idmp-edge-dev-d0b7",
+                        "idmp-edge-prod-e8c8",
+                        "idmp-edge-qa-8337",
+                        "idmp-edge-rnd-5b9c",
+                        "idmp-edge-stg-8570",
+                        "idmp-iap-dev-54c2",
+                        "idmp-iap-prod-9289",
+                        "idmp-iap-qa-7257",
+                        "idmp-iap-rnd-91ad",
+                        "idmp-iap-stg-a5f9",
+                        "idmp-idp-dev-b2a8",
+                        "idmp-idp-dev-transfer-a7c1",
+                        "idmp-idp-prod-3959",
+                        "idmp-idp-prod-transfer-0bf3",
+                        "idmp-idp-qa-b68d",
+                        "idmp-idp-qa-transfer-bdbf",
+                        "idmp-idp-rnd-6894",
+                        "idmp-idp-stg-3ff3",
+                        "idmp-idp-stg-transfer-56fe",
+                        "idmp-mii-dev-ddb5",
+                        "idmp-mii-prod-ec5d",
+                        "idmp-mii-qa-373b",
+                        "idmp-mii-rnd-e1d8",
+                        "idmp-mii-stg-2822",
+                        "idmp-mirs-dev-d601",
+                        "idmp-mirs-prod-f3e5",
+                        "idmp-mirs-qa-2632",
+                        "idmp-mirs-rnd-5ac9",
+                        "idmp-mirs-stg-ae1f"
+                    ]
+                }
+            ]
+        }
+    ]
+}
