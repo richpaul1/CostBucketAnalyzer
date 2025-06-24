@@ -27,13 +27,12 @@ function debug(message, ...args) {
     console.debug(`[DEBUG] ${message}`, ...args);
 }
 
-
-export function getConflicts(jsonData){
+export function getConflicts(jsonData, type = 'all') {
     // Parse JSON if it's a string
     const data = typeof jsonData === 'string' ? JSON.parse(jsonData) : jsonData;
     const result = [];
 
-    const duplicateMap = new Map();
+    let duplicateMap = new Map();
 
     // Function to generate Cartesian product of arrays
     function cartesianProduct(arrays) {
@@ -57,6 +56,10 @@ export function getConflicts(jsonData){
     businessMappings.forEach( mapping => {
         if (!mapping.costTargets || !Array.isArray(mapping.costTargets)) {
             return; // Skip mappings without valid cost targets
+        }
+
+        if (type === 'per-category'){
+            duplicateMap = new Map();
         }
         
         mapping.costTargets.forEach(costTarget => {
@@ -97,16 +100,41 @@ export function getConflicts(jsonData){
 
                     // Check for duplicates or overlaps    
                     const entry = duplicateMap.has(conditionStr);
-                    const nameKey = mapping.name+" > "+costTarget.name;
+                    const nameKey = {
+                        cat: mapping.name,
+                        bucket: costTarget.name
+                    }
+                        
                     if (!entry) {
-                        duplicateMap.set(conditionStr, mapping.name+" > "+costTarget.name);
+                        duplicateMap.set(conditionStr, JSON.stringify(nameKey));
                     }
                     else {
-                        const key = duplicateMap.get(conditionStr);
-                        if (key !== nameKey) {
-                            result.push(`${key} overlaps ${nameKey} rule : ${conditionStr}`);
+                        const keyStr = duplicateMap.get(conditionStr);
+                        const key = JSON.parse(keyStr);
+                        if (key.cat !== nameKey.cat || key.bucket !== nameKey.bucket) {
+                            result.push(
+                                {
+                                    row: result.length + 1,
+                                    src_cat: key.cat,
+                                    src_bucket: key.bucket,
+                                    dest_cat: nameKey.cat,
+                                    dest_bucket: nameKey.bucket,
+                                    condition: conditionStr,
+                                    type: 'overlap'
+                                }
+                            );
                         }else{
-                            result.push(`${key} has duplicate rule : ${conditionStr}`);
+                            result.push(
+                                {
+                                    row: result.length + 1,
+                                    src_cat: key.cat,
+                                    src_bucket: key.bucket,
+                                    dest_cat: nameKey.cat,
+                                    dest_bucket: nameKey.bucket,
+                                    condition: conditionStr,
+                                    type: 'duplicate'
+                                }
+                            );
                         }
                     }
                     
@@ -116,5 +144,5 @@ export function getConflicts(jsonData){
     });
 
     // Return numbered list of combinations
-    return result.map((combo, i) => `${i + 1}. ${combo}`);
+    return result;
 }

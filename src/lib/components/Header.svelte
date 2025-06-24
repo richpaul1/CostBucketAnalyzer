@@ -8,7 +8,7 @@
         <div class="header-content">
             <div class="brand">
                 <Calculator size={24} />
-                <h1>CostAnalyzer</h1>
+                <h1>Cost Category Analyzer</h1>
             </div>
             <ThemeToggle />
         </div>
@@ -35,7 +35,7 @@
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        color: var(--accent-color);
+        color: var(--text-primary);
     }
     
     .brand h1 {
