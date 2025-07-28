@@ -1,3 +1,4 @@
-node_modules
-.svelte-kit
-/.svelte-kit
+node_modules/
+.svelte-kit/
+costcat/
+business_models/

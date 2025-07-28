@@ -1,16 +1,14 @@
 <script>
-    import ThemeToggle from './ThemeToggle.svelte';
-    import { Calculator } from 'lucide-svelte';
+    import ThemeToggle from "./ThemeToggle.svelte";
+    import { Calculator } from "lucide-svelte";
 </script>
 
 <header class="header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <Calculator size={24} />
-                <h1>Cost Category Analyzer</h1>
-            </div>
-            <ThemeToggle />
+    <div class="header-content">
+        <ThemeToggle />
+        <div class="brand">
+            <Calculator size={24} />
+            <h2>Cost Category Analyzer</h2>
         </div>
     </div>
 </header>
@@ -23,24 +21,20 @@
         top: 0;
         z-index: 100;
     }
-    
+
     .header-content {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start; /* Shift content to the left */
         align-items: center;
         padding: 1rem 0;
+        gap: 1.5rem; /* Add space between brand and ThemeToggle */
     }
-    
+
     .brand {
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        color: var(--text-primary);
     }
+
     
-    .brand h1 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin: 0;
-    }
 </style>

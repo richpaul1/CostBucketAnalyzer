@@ -1,0 +1,78 @@
+{
+  "metaData": {},
+  "resource": {
+    "businessMappings": [
+      {
+        "uuid": "0045e300-dcea-4160-9de5-ddbf5a19d1b8",
+        "name": "ccs",
+        "accountId": "1001",
+        "costTargets": [
+          {
+            "uuid": "5125f5ad-cb45-435a-b76c-6cdcfb4fc03d",
+            "name": "CloudFront - HTTPS Requests",
+            "marginPercentage": null,
+            "rules": [
+              {
+                "viewConditions": [
+                  {
+                    "type": "VIEW_ID_CONDITION",
+                    "viewField": {
+                      "fieldId": "awsServicecode",
+                      "fieldName": "Service Code",
+                      "identifier": "AWS",
+                      "identifierName": "AWS"
+                    },
+                    "viewOperator": "IN",
+                    "values": [
+                      "Amazon CloudFront"
+                    ]
+                  },
+                  {
+                    "type": "VIEW_ID_CONDITION",
+                    "viewField": {
+                      "fieldId": "awsUsagetype",
+                      "fieldName": "Usage Type",
+                      "identifier": "AWS",
+                      "identifierName": "AWS"
+                    },
+                    "viewOperator": "LIKE",
+                    "values": [
+                      "Requests"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "sharedCosts": null,
+        "unallocatedCost": {
+          "type": "UNALLOCATED_COST_TARGET",
+          "uuid": "b8fc8e25-f5d7-4d82-8aad-6f03c948d772",
+          "name": "Unallocated",
+          "marginPercentage": null,
+          "rules": []
+        },
+        "dataSources": [
+          "AWS"
+        ],
+        "createdAt": 1753394809281,
+        "lastUpdatedAt": 1753394809281,
+        "createdBy": {
+          "id": "api_user",
+          "name": "API User",
+          "email": "api@example.com",
+          "type": "SERVICE_USER"
+        },
+        "lastUpdatedBy": {
+          "id": "api_user",
+          "name": "API User",
+          "email": "api@example.com",
+          "type": "SERVICE_USER"
+        }
+      }
+    ],
+    "totalCount": 1
+  },
+  "responseMessages": []
+}

@@ -1,0 +1,527 @@
+case(
+  when(
+    (${aws.aws_servicecode} = "Amazon API Gateway" ), "Amazon API Gateway"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Athena"), "Amazon Athena"),
+  when(
+    (${aws.aws_servicecode} = "Amazon EC2 Container Registry (ECR)"), "Amazon EC2 Container Registry (ECR)"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Container Service"), "Amazon Elastic Container Service"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Container Service for Kubernetes"), "Elastic Container Service for Kubernetes (EKS)"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic File System"), "Amazon Elastic File System"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic MapReduce"), "Amazon Elastic MapReduce"),
+  when(
+    (${aws.aws_servicecode} = "Amazon ElastiCache"), "ElastiCache - Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Glacier"), "S3 - Glacier"),
+  when(
+    (${aws.aws_servicecode} = "Amazon GuardDuty"), "Amazon GuardDuty"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Kinesis"), "Amazon Kinesis"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Kinesis Analytics"), "Kinesis Analytics - KPU Hour"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Kinesis Firehose"), "Amazon Kinesis Firehose"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Location Service"), "Amazon Location Service"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Managed Grafana"), "Amazon Managed Grafana"),
+  when(
+    (${aws.aws_servicecode} = "Amazon OpenSearch Service"), "Amazon OpenSearch Service"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Pinpoint"), "Pinpoint - Messages Sent"),
+  when(
+    (${aws.aws_servicecode} = "Amazon QuickSight"), "Amazon QuickSight"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Redshift"), "Amazon Redshift"),
+  when(
+    (${aws.aws_servicecode} = "Amazon S3 Glacier Deep Archive"), "S3 - Glacier"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Email Service"), "Amazon Simple Email Service"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Notification Service"), "Amazon Simple Notification Service"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Queue Service"), "Amazon Simple Queue Service"),
+  when(
+    (${aws.aws_servicecode} = "Amazon SimpleDB"), "Amazon SimpleDB"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Timestream"), "Timestream"),
+  when(
+    (${aws.aws_servicecode} = "AWS Amplify"), "AWS Amplify"),
+  when(
+    (${aws.aws_servicecode} = "AWS AppSync"), "AWS AppSync"),
+  when(
+    (${aws.aws_servicecode} = "AWS Backup"), "AWS Backup"),
+  when(
+    (${aws.aws_servicecode} = "AWS Certificate Manager"), "Certificate Manager - Certificate Authority"),
+  when(
+    (${aws.aws_servicecode} = "AWS CloudHSM"), "AWS CloudHSM"),
+  when(
+    (${aws.aws_servicecode} = "AWS CloudShell"), "AWS CloudShell"),
+  when(
+    (${aws.aws_servicecode} = "AWS CloudTrail"), "AWS CloudTrail"),
+  when(
+    (${aws.aws_servicecode} = "AWS Config"), "AWS Config"),
+  when(
+    (${aws.aws_servicecode} = "AWS Cost Explorer"), "AWS Cost Explorer"),
+  when(
+    (${aws.aws_servicecode} = "AWS Data Pipeline"), "AWS Data Pipeline"),
+  when(
+    (${aws.aws_servicecode} = "AWS Data Transfer"), "EC2 - Transfer"),
+  when(
+    (${aws.aws_servicecode} = "AWS DataSync"), "AWS DataSync"),
+  when(
+    (${aws.aws_servicecode} = "AWS Database Migration Service"), "AWS Database Migration Service"),
+  when(
+    (${aws.aws_servicecode} = "AWS Application Migration Service"), "AWS Application Migration Service"),
+  when(
+    (${aws.aws_servicecode} = "AWS Direct Connect"), "AWS Direct Connect"),
+  when(
+    (${aws.aws_servicecode} = "AWS Directory Service"), "AWS Directory Service"),
+  when(
+    (${aws.aws_servicecode} = "AWS Global Accelerator"), "Global Accelerator - Fixed Fee"),
+  when(
+    (${aws.aws_servicecode} = "AWS Glue"), "AWS Glue"),
+  when(
+    (${aws.aws_servicecode} = "AWS IoT"), "AWS IoT"),
+  when(
+    (${aws.aws_servicecode} = "AWS Key Management Service"), "AWS Key Management Service"),
+  when(
+    (${aws.aws_servicecode} = "AWS Premium Support"), "AWS Premium Support"),
+  when(
+    (${aws.aws_servicecode} = "AWS Support (Enterprise)"), "AWS Premium Support"),
+  when(
+    (${aws.aws_servicecode} = "AWS Security Hub"), "AWS Security Hub"),
+  when(
+    (${aws.aws_servicecode} = "AWS Service Catalog"), "AWS Service Catalog"),
+  when(
+    (${aws.aws_servicecode} = "AWS Step Functions"), "AWS Step Functions"),
+  when(
+    (${aws.aws_servicecode} = "AWS Systems Manager"), "AWS Systems Manager"),
+  when(
+    (${aws.aws_servicecode} = "AWS Transfer Family"), "Transfer Family - Other"),
+  when(
+    (${aws.aws_servicecode} = "AWS WAF"), "AWS WAF"),
+  when(
+    (${aws.aws_servicecode} = "AWS X-Ray"), "AWS X-Ray"),
+  when(
+    (${aws.aws_servicecode} = "CloudFront Security Bundle"), "CloudFront Security Bundle"),
+  when(
+    (${aws.aws_servicecode} = "CloudWatch Events"), "AmazonCloudWatch"),
+  when(
+    (${aws.aws_servicecode} = "DynamoDB Accelerator (DAX)"), "DynamoDB Accelerator - Node Hours"),
+  when(
+    (${aws.aws_servicecode} = "EDP Discount"), "EDP Discount"),
+  when(
+    (${aws.aws_servicecode} = "Private Rate Card Discount"), "Private Rate Card Discount"),
+  when(
+    (${aws.aws_servicecode} = "Savings Plans for AWS Compute usage"), "Savings Plans for AWS Compute usage"),
+  when(
+    (${aws.aws_servicecode} = "CSPP Private Offer"), "CSPP Private Offer"),
+  when(
+    (${aws.aws_servicecode} = "Databricks Unified Analytics Platform - Annual Commitment v3"), "Databricks Unified Analytics Platform - Annual Commitment v3"),
+  when(
+    (${aws.aws_servicecode} = "CentOS 8.2 Minimal CHI/Linux - SL1"), "Amazon Marketplace"),
+  when(
+    (${aws.aws_servicecode} = "CIS Amazon Linux 2 Benchmark - Level 2"), "Amazon Marketplace"),
+  when(
+    (${aws.aws_servicecode} = "Debian 10 (Debian Buster) with Support by Supported Images"), "Amazon Marketplace"),
+  when(
+    (${aws.aws_servicecode} = "Genymotion Cloud : Android 10.0 (Q)"), "Amazon Marketplace"),
+  when(
+    (${aws.aws_servicecode} = "Genymotion Cloud - Android 10.0 (x86_64)"), "Amazon Marketplace"),
+  when(
+    (${aws.aws_servicecode} = "Wowza Streaming Engine (Linux PAID)"), "Amazon Marketplace"),
+  when(
+    (${aws.aws_servicecode} = "CIS Amazon Linux 2 Kernel 4.14 Benchmark - Level 1"), "Amazon Marketplace"),
+  when(
+    (${aws.aws_servicecode} = "VM-Series Virtual NextGen Firewall w/ Threat Prevention - Bundle1 AWS"), "Amazon Marketplace"),
+  when(
+    (${aws.aws_servicecode} = "Oracle Linux Server 8.6 with support by Tiov IT"), "Amazon Marketplace"),
+  when(
+    (${aws.aws_servicecode} = "Oracle Linux Server 8.7 with support by Tiov IT"), "Amazon Marketplace"),
+  when(
+    (${aws.aws_servicecode} = "Debian 10 with Support by Supported Images"), "Amazon Marketplace"),
+  when(
+    (${aws.aws_servicecode} = "NGINX Plus Premium - Amazon Linux 2 (LTS) AMI"), "NGINX Plus Premium - Amazon Linux 2 (LTS) AMI"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Inspector"), "Amazon Inspector"),
+  when(
+    (${aws.aws_servicecode} = "Splunk Private Offer Session 3"), "Splunk Private Offer Session 3"),
+  when(
+    (${aws.aws_servicecode} = "Splunk Private Offer Session 1"), "Splunk Private Offer Session 1"),
+  when(
+    (${aws.aws_servicecode} = "Splunk Private Offer Session 4"), "Splunk Private Offer Session 4"),
+  when(
+    (${aws.aws_servicecode} = "Splunk Private Offer Session 4"), "Splunk Private Offer Session 5"),
+  when(
+    (${aws.aws_servicecode} = "Rafay Kubernetes Operations Platform"), "Rafay Kubernetes Operations Platform"),
+  when(
+    (${aws.aws_servicecode} = "Anaplan"), "Anaplan"),
+  when(
+    (${aws.aws_servicecode} = "Continuous Delivery-as-a-Service platform"), "Continuous Delivery-as-a-Service platform"),
+  when(
+    (${aws.aws_servicecode} = "AWS Certification Pathway Package"), "AWS Certification Pathway Package"),
+  when(
+    (${aws.aws_servicecode} = "AWS CodePipeline"), "AWS CodePipeline"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Rekognition"), "Amazon Rekognition"),
+  when(
+    (${aws.aws_servicecode} = "Amazon CloudFront" AND contains(${aws.aws_usagetype},"Requests-") ), "CloudFront - HTTPS Requests"),
+  when(
+    (${aws.aws_servicecode} = "Amazon CloudFront" AND contains(${aws.aws_usagetype},"Lambda-") ), "CloudFront - Lambda Edge Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon CloudFront" AND contains(${aws.aws_usagetype},"Invalidations") ), "CloudFront - Other"),
+  when(
+    (${aws.aws_servicecode} = "Amazon CloudFront" AND contains(${aws.aws_usagetype},"SSL-Cert-Custom") ), "CloudFront - SSL Certificate"),
+  when(
+    (${aws.aws_servicecode} = "Amazon CloudFront" AND contains(${aws.aws_usagetype},"DataTransfer-")), "CloudFront - Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Amazon DynamoDB" AND contains(${aws.aws_usagetype},"TimedBackupStorage-")), "DynamoDB - Backup"),
+  when(
+    (${aws.aws_servicecode} = "Amazon DynamoDB" AND contains(${aws.aws_usagetype},"TimedPITRStorage-")), "DynamoDB - Backup"),
+  when(
+    (${aws.aws_servicecode} = "Amazon DynamoDB" AND contains(${aws.aws_usagetype},"ExportDataSize-")), "DynamoDB - Backup"),
+  when(
+    (${aws.aws_servicecode} = "Amazon DynamoDB" AND contains(${aws.aws_usagetype},"DataTransfer-In")), "DynamoDB - Data Transfer In"),
+  when(
+    (${aws.aws_servicecode} = "Amazon DynamoDB" AND contains(${aws.aws_usagetype},"DataTransfer-Out")), "DynamoDB - Data Transfer In"),
+  when(
+    (${aws.aws_servicecode} = "Amazon DynamoDB" AND contains(${aws.aws_usagetype},"ReadCapacityUnit-")), "DynamoDB - Provisioned Read Capacity"),
+  when(
+    (${aws.aws_servicecode} = "Amazon DynamoDB" AND contains(${aws.aws_usagetype},"ReadRequestUnits")), "DynamoDB - Provisioned Read Capacity"),
+  when(
+    (${aws.aws_servicecode} = "Amazon DynamoDB" AND contains(${aws.aws_usagetype},":dynamodb.read")), "DynamoDB - Provisioned Read Capacity"),
+  when(
+    (${aws.aws_servicecode} = "Amazon DynamoDB" AND contains(${aws.aws_usagetype},"WriteCapacityUnit-")), "DynamoDB - Provisioned Write Capacity"),
+  when(
+    (${aws.aws_servicecode} = "Amazon DynamoDB" AND contains(${aws.aws_usagetype},"WriteRequestUnits")), "DynamoDB - Provisioned Write Capacity"),
+  when(
+    (${aws.aws_servicecode} = "Amazon DynamoDB" AND contains(${aws.aws_usagetype},"dynamodb.write")), "DynamoDB - Provisioned Write Capacity"),
+  when(
+    (${aws.aws_servicecode} = "Amazon DynamoDB" AND contains(${aws.aws_usagetype},"TimedStorage-")), "DynamoDB - Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon DynamoDB" AND contains(${aws.aws_usagetype},"ChangeDataCaptureUnits-")), "DynamoDB - Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype}," EC2 - Transfer:VolumeIOUsage")), "EBS - I/O"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"VolumeP-IOPS")), "EBS - PIOPs Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"VolumeP-Throughput")), "EBS - PIOPs Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"VolumeP-Throughput")), "EBS - PIOPs Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"EBS:VolumeUsage")), "EBS - Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"BoxUsage")), "EC2 - Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"SpotUsage")), "EC2 - Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"EBSOptimized")), "EC2 - Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"HeavyUsage")), "EC2 - Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"CPUCredits")), "EC2 - Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"HostBoxUsage")), "EC2 - Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"HostUsage")), "EC2 - Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"SnapshotUsage")), "EC2 - EBS Snapshot"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"FastSnapshotRestore")), "EC2 - EBS Snapshot"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"EBS:directAPI.snapshot")), "EC2 - EBS Snapshot"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"ElasticIP")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"NatGateway-Bytes")), "EC2 - NAT Gateway Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"NatGateway-Hours")), "EC2 - NAT Gateway Usage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"In-Bytes")), "EC2 - Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"DataTransfer-Regional-Bytes")), "EC2 - Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Elastic Compute Cloud" AND contains(${aws.aws_usagetype},"Out-Bytes")), "EC2 - Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Amazon FSx" AND contains(${aws.aws_usagetype},"BackupUsage")), "FSx - Backup"),
+  when(
+    (${aws.aws_servicecode} = "Amazon FSx" AND contains(${aws.aws_usagetype},"DataTransfer")), "FSx - Data Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Amazon FSx" AND contains(${aws.aws_usagetype},"Storage")), "FSx - Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon FSx" AND contains(${aws.aws_usagetype},"ThroughputCapacity")), "FSx - Throughput"),
+  when(
+    (${aws.aws_servicecode} = "Amazon FSx" AND contains(${aws.aws_usagetype},"USE1-USW2-AWS-Out-Bytes")), "FSx - Data Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Amazon FSx" AND contains(${aws.aws_usagetype},"USE1-USW1-AWS-Out-Bytes")), "FSx - Data Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Relational Database Service" AND contains(${aws.aws_usagetype},"BackupUsage")), "RDS - Charged Backup Usage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Relational Database Service" AND contains(${aws.aws_usagetype},"InstanceUsage")), "RDS - Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Relational Database Service" AND contains(${aws.aws_usagetype},"HeavyUsage")), "RDS - Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Relational Database Service" AND contains(${aws.aws_usagetype},"Multi-AZUsage")), "RDS - Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Relational Database Service" AND contains(${aws.aws_usagetype},"MirrorUsage")), "RDS - Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Relational Database Service" AND contains(${aws.aws_usagetype},"EU-ExtendedSupport:Yr1-Yr2:MySQL5.7")), "RDS - Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Relational Database Service" AND contains(${aws.aws_usagetype},"GP2-Storage")), "RDS - GP2 Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Relational Database Service" AND contains(${aws.aws_usagetype},"GP3-Storage")), "RDS - GP2 Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Relational Database Service" AND contains(${aws.aws_usagetype},"StorageIOUsage")), "RDS - GP2 Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Relational Database Service" AND contains(${aws.aws_usagetype},"StorageUsage")), "RDS - GP2 Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Relational Database Service" AND contains(${aws.aws_usagetype},"Multi-AZ-PIOPS")), "RDS - Multi-AZ PIOPs"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Relational Database Service" AND contains(${aws.aws_usagetype},"EU-RDS:Multi-AZ-IO2-PIOPS")), "RDS - Multi-AZ PIOPs"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Relational Database Service" AND contains(${aws.aws_usagetype},"RDS:PIOPS")), "RDS - PIOPs Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Relational Database Service" AND contains(${aws.aws_usagetype},"APS1-RDS:Mirror-IO2-PIOPS")), "RDS - PIOPs Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Relational Database Service" AND contains(${aws.aws_usagetype},"APS1-RDS:Mirror-PIOPS-Storage-IO2")), "RDS - PIOPs Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Relational Database Service" AND contains(${aws.aws_usagetype},"In-Bytes")), "RDS - Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Relational Database Service" AND contains(${aws.aws_usagetype},"Out-Bytes")), "RDS - Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Route 53" AND contains(${aws.aws_usagetype},"HostedZone")), "Route 53 - Hosted Zone"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Route 53" AND NOT contains(${aws.aws_usagetype},"HostedZone")), "Amazon Route 53"),
+  when(
+    (${aws.aws_servicecode} = "Amazon SageMaker" AND contains(${aws.aws_usagetype},"Host:ml")), "SageMaker - Endpoint Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon SageMaker" AND contains(${aws.aws_usagetype},"Studio:KernelGateway")), "SageMaker - Endpoint Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon SageMaker" AND contains(${aws.aws_usagetype},"USE1-Canvas:Session-Hrs")), "SageMaker - Endpoint Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon SageMaker" AND contains(${aws.aws_usagetype},"USE1-Tsform:ml.p3.2xlarge")), "SageMaker - Endpoint Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon SageMaker" AND contains(${aws.aws_usagetype},"USE1-Tsform:ml.g4dn.xlarge")), "SageMaker - Endpoint Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon SageMaker" AND contains(${aws.aws_usagetype},"USE1-Tsform:ml.c4.xlarge")), "SageMaker - Endpoint Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon SageMaker" AND contains(${aws.aws_usagetype},"USE1-Tsform:ml.m5.4xlarge")), "SageMaker - Endpoint Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon SageMaker" AND contains(${aws.aws_usagetype},"USW2-AsyncInf:ml.g4dn.4xlarge")), "SageMaker - Endpoint Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon SageMaker" AND contains(${aws.aws_usagetype},"Data-Bytes-In")), "SageMaker - Endpoint Data In"),
+  when(
+    (${aws.aws_servicecode} = "Amazon SageMaker" AND contains(${aws.aws_usagetype},"Data-Bytes-Out")), "SageMaker - Endpoint Data Out"),
+  when(
+    (${aws.aws_servicecode} = "Amazon SageMaker" AND contains(${aws.aws_usagetype},"Host:VolumeUsage")), "SageMaker - Endpoint GP2 Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon SageMaker" AND contains(${aws.aws_usagetype},"Train:VolumeUsage")), "SageMaker - Endpoint GP2 Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon SageMaker" AND contains(${aws.aws_usagetype},"Notebk:ml")), "SageMaker - Notebook Instance Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon SageMaker" AND contains(${aws.aws_usagetype},"Notebk:VolumeUsage")), "SageMaker - Notebook Instance GP2 Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon SageMaker" AND contains(${aws.aws_usagetype},"Train:ml")), "SageMaker - Training Job Compute"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"Requests-")), "S3 - API"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"EU-BatchOperations-Jobs")), "S3 - API"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"Inventory-ObjectsListed")), "S3 - API"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"TimedStorage-GlacierByteHrs")), "S3 - Glacier"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"USW2-Standard-Retrieval-Bytes")), "S3 - Glacier"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"USW2-TimedStorage-GDA-Staging")), "S3 - Glacier"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"USW2-TimedStorage-GlacierStaging")), "S3 - Glacier"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"USW2-Expedited-Retrieval-Bytes")), "S3 - Glacier"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"EarlyDelete-GDA")), "S3 - Glacier"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"EU-Retrieval-GIR")), "S3 - Glacier"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"EU-EarlyDelete-GIR")), "S3 - Glacier"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"USW1-TimedStorage-GDA-Staging")), "S3 - Glacier"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"TimedStorage-ZIA-ByteHrs")), "S3 - One Zone Infrequent Access"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"TimedStorage-SIA")), "S3 - Standard Infrequent Access"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"Retrieval-SIA")), "S3 - Standard Infrequent Access"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"EarlyDelete-SIA")), "S3 - Standard Infrequent Access"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"USW2-EarlyDelete-ByteHrs")), "S3 - Standard Infrequent Access"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"EU-Retrieval-ZIA")), "S3 - Standard Infrequent Access"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"USW2-Retrieval-ZIA")), "S3 - Standard Infrequent Access"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"EarlyDelete-GDA")), "S3 - Glacier"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"TimedStorage-ByteHrs")), "S3 - Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"StorageAnalytics")), "S3 - Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"Select-Returned-Bytes")), "S3 - Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"Select-Scanned-Bytes")), "S3 - Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"TimedStorage-GDA-ByteHrs")), "S3 - Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"TimedStorage-GIR-ByteHrs")), "S3 - Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"TimedStorage-RRS-ByteHrs")), "S3 - Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"TagStorage-TagHrs")), "S3 - Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"StorageLensFreeTier")), "S3 - Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"EU-StorageLens-ObjCount")), "S3 - Storage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"AWS-Out-Bytes")), "S3 - Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"AWS-In-Bytes")), "S3 - Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"DataTransfer-Out-Bytes")), "S3 - Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"CloudFront-In-Bytes")), "S3 - Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"CloudFront-Out-Bytes")), "S3 - Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Simple Storage Service" AND contains(${aws.aws_usagetype},"DataTransfer-In-Bytes")), "S3 - Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"AWS-In-Bytes")), "Amazon Virtual Private Cloud"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"AWS-Out-Bytes")), "Amazon Virtual Private Cloud"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"DataTransfer-In-Bytes")), "Amazon Virtual Private Cloud"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"DataTransfer-Out-Bytes")), "Amazon Virtual Private Cloud"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"DataTransfer-xAZ-Out-Bytes")), "Amazon Virtual Private Cloud"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"DataTransfer-xAZ-In-Bytes")), "Amazon Virtual Private Cloud"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"CloudFront-In-Bytes")), "Amazon Virtual Private Cloud"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"DataTransfer-Regional-Bytes")), "Amazon Virtual Private Cloud"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"USW2-Analysis-Runs")), "Amazon Virtual Private Cloud"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"USW1-Analysis-Runs")), "Amazon Virtual Private Cloud"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"TransitGateway-Bytes")), "Virtual Private Cloud - Transit Gateway"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"TransitGateway-Hours")), "Virtual Private Cloud - Transit Gateway"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"VpcEndpoint")), "Virtual Private Cloud - VPC Endpoint Usage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"VPN-Usage-Hours")), "Virtual Private Cloud - VPN Connection Usage"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"EU-Analysis-Runs")), "Amazon Virtual Private Cloud"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"USE1-Analysis-Runs")), "Amazon Virtual Private Cloud"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"USW2-PublicIPv4:IdleAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"EU-PublicIPv4:IdleAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"EU-PublicIPv4:InUseAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"USW2-PublicIPv4:InUseAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"APS2-PublicIPv4:IdleAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"APS1-PublicIPv4:IdleAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"APS2-PublicIPv4:InUseAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"APS1-PublicIPv4:InUseAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"USW1-PublicIPv4:IdleAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"USE1-PublicIPv4:IdleAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"USE1-PublicIPv4:InUseAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"USW1-PublicIPv4:InUseAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"EUW3-PublicIPv4:InUseAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"EUW2-PublicIPv4:IdleAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"APN1-PublicIPv4:IdleAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"APN1-PublicIPv4:InUseAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"USE2-PublicIPv4:IdleAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"EUW2-PublicIPv4:InUseAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"EUW3-PublicIPv4:IdleAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"APS3-PublicIPv4:InUseAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"EUC1-PublicIPv4:IdleAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"EUC1-PublicIPv4:InUseAddress")), "EC2 - Elastic IP"),
+  when(
+    (${aws.aws_servicecode} = "Amazon Virtual Private Cloud" AND contains(${aws.aws_usagetype},"EU-IPAddressManager-IP-Hours")), "IPAM"),
+  when(
+    (${aws.aws_servicecode} = "AmazonCloudWatch" AND contains(${aws.aws_usagetype},"AlarmMonitorUsage")), "CloudWatch - Alarms"),
+  when(
+    (${aws.aws_servicecode} = "AmazonCloudWatch" AND NOT contains(${aws.aws_usagetype},"AlarmMonitorUsage")), "CloudWatch - Alarms"),
+  when(
+    (${aws.aws_servicecode} = "AWS Data Transfer" AND contains(${aws.aws_usagetype},"AWS-In-Bytes")), "EC2 - Transfer"),
+  when(
+    (${aws.aws_servicecode} = "AWS Data Transfer" AND contains(${aws.aws_usagetype},"AWS-Out-Bytes")), "EC2 - Transfer"),
+  when(
+    (${aws.aws_servicecode} = "AWS Lambda" AND contains(${aws.aws_usagetype},"Lambda-GB")), "Lambda - Compute"),
+  when(
+    (${aws.aws_servicecode} = "AWS Lambda" AND contains(${aws.aws_usagetype},"Lambda-Storage-GB")), "Lambda - Compute"),
+  when(
+    (${aws.aws_servicecode} = "AWS Lambda" AND contains(${aws.aws_usagetype},"Lambda-Storage-GB")), "Lambda - Compute"),
+  when(
+    (${aws.aws_servicecode} = "AWS Lambda" AND contains(${aws.aws_usagetype},"In-Bytes")), "Lambda - Data Transfer"),
+  when(
+    (${aws.aws_servicecode} = "AWS Lambda" AND contains(${aws.aws_usagetype},"Out-Bytes")), "Lambda - Data Transfer"),
+  when(
+    (${aws.aws_servicecode} = "AWS Lambda" AND contains(${aws.aws_usagetype},"Regional-Bytes")), "Lambda - Data Transfer"),
+  when(
+    (${aws.aws_servicecode} = "AWS Lambda" AND contains(${aws.aws_usagetype},"Request")), "Lambda - Request"),
+  when(
+    (${aws.aws_servicecode} = "AWS Secrets Manager" AND contains(${aws.aws_usagetype},"API")), "Secrets Manager - API Call"),
+  when(
+    (${aws.aws_servicecode} = "AWS Secrets Manager" AND contains(${aws.aws_usagetype},"AWSSecretsManager-Secret")), "Secrets Manager - Secret"),
+  when(
+    (${aws.aws_servicecode} = "AWS Shield" AND contains(${aws.aws_usagetype},"Shield-Monthly-Fee")), "Shield - Subscription"),
+  when(
+    (${aws.aws_servicecode} = "AWS Shield" AND NOT contains(${aws.aws_usagetype},"Shield-Monthly-Fee")), "AWS Shield"),
+  when(
+    (${aws.aws_servicecode} = "Elastic Load Balancing" AND contains(${aws.aws_usagetype},"In-Bytes")), "EC2 - Load Balancer Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Elastic Load Balancing" AND contains(${aws.aws_usagetype},"Out-Bytes")), "EC2 - Load Balancer Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Elastic Load Balancing" AND contains(${aws.aws_usagetype},"Regional-Bytes")), "EC2 - Load Balancer Transfer"),
+  when(
+    (${aws.aws_servicecode} = "Elastic Load Balancing" AND contains(${aws.aws_usagetype},"DataProcessing")), "EC2 - Load Balancer"),
+  when(
+    (${aws.aws_servicecode} = "Elastic Load Balancing" AND contains(${aws.aws_usagetype},"LCUUsage")), "EC2 - Load Balancer"),
+  when(
+    (${aws.aws_servicecode} = "Elastic Load Balancing" AND contains(${aws.aws_usagetype},"EU-IdleProvisionedLBCapacity")), "EC2 - Load Balancer"),
+  when(
+    (${aws.aws_servicecode} = "Elastic Load Balancing" AND contains(${aws.aws_usagetype},"LoadBalancerUsage")), "EC2 - Load Balancer"),
+  when(
+    (${aws.aws_servicecode} = "Elastic Load Balancing" AND contains(${aws.aws_usagetype},"LoadBalancerUsage")), "EC2 - Load Balancer"),
+  "Unmapped"
+)

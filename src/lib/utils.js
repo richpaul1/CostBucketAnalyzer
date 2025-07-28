@@ -105,12 +105,22 @@ export function getConflicts(jsonData, type = 'all') {
                         bucket: costTarget.name
                     }
                         
+                    const print = false
+                    if(conditionStr === "department tag null") {
+                        print = true;
+                    }
+
                     if (!entry) {
                         duplicateMap.set(conditionStr, JSON.stringify(nameKey));
                     }
                     else {
                         const keyStr = duplicateMap.get(conditionStr);
                         const key = JSON.parse(keyStr);
+                        if(print){
+                            console.log(`Found duplicate or overlap for condition: ${conditionStr}`);
+                            console.log(`Existing key: ${keyStr}`);
+                            console.log(`New key: ${JSON.stringify(nameKey)}`);
+                        }
                         if (key.cat !== nameKey.cat || key.bucket !== nameKey.bucket) {
                             result.push(
                                 {
