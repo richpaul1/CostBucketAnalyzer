@@ -2,7 +2,7 @@ const { v4: uuidv4 } = require('uuid'); // npm install uuid
 
 export function convert(
   caseStatementString,
-  costCategoryName = "Cost Categories",
+  costCategoryName = "Services",
   accountId = "accountid"
 ) {
   const businessMappings = [];
@@ -25,7 +25,7 @@ export function convert(
         type: "VIEW_ID_CONDITION",
         viewField: {
           fieldId: "awsServicecode",
-          fieldName: "Service Code",
+          fieldName: "Service",
           identifier: "AWS",
           identifierName: "AWS",
         },

@@ -380,6 +380,9 @@ when(
 describe('custom.test.js', () => {
   it.only('convert word to CC', async () => {
     const output = conversion.convert(awsCaseStatement,'ccs','1001');
-    console.log(JSON.stringify(output, null, 2));
+    const fs = require('fs');
+    const outputFileName = 'output.json';
+    fs.writeFileSync(outputFileName, JSON.stringify(output, null, 2));
+    console.log(`Wrote output to ${outputFileName}`);
   });
 });

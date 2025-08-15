@@ -95,9 +95,9 @@
 <div class="upload-page">
     <!-- Horizontal Tabs -->
     <div class="tabs-horizontal">
-        <button class:active={activeTab === 0} on:click={() => activeTab = 0}><Upload size={16} /> Analyze</button>
+        <button class:active={activeTab === 0} on:click={() => activeTab = 0}><Upload size={16} /> Upload</button>
         <button class:active={activeTab === 1} on:click={() => activeTab = 1}>Overlapping Rules</button>
-        <button class:active={activeTab === 2} on:click={() => activeTab = 2}>Upload To Harness</button>
+        <button class:active={activeTab === 2} on:click={() => activeTab = 2}>Visualization</button>
         <a href="#" class="icon-btn-reset" on:click|preventDefault={resetUpload} aria-label="Reset Upload" title="Reset Upload">
             <RotateCcw size={16} /> Reset
         </a>
@@ -206,14 +206,51 @@
         {#if activeTab === 2}
             <!-- Visualization Tab Content -->
             <div class="tab-content">
-                <h2>Upload To Harness</h2>
-                
+                <h2>Visualization</h2>
+                {#if graphData.nodes.length}
+                    <p>Visualizing {graphData.nodes.length} nodes and {graphData.links.length} links.</p>
+                    <TidyTree {graphData} />
+                   
+                {:else}
+                    <p>No data to visualize. Please upload a file first or use sample data.</p>
+                    <!-- Optional: Button to load sample data -->
                     <button class="btn" on:click={() => {
-                       
+                        graphData = {
+                            nodes: [
+                                { id: 'root', name: 'Dataset', parent: null },
+                                { id: 'cat_Infra', name: 'Infra', parent: 'root' },
+                                { id: 'cat_DevOps', name: 'DevOps', parent: 'root' },
+                                { id: 'bucket_Infra_EC2', name: 'EC2', parent: 'cat_Infra' },
+                                { id: 'bucket_Infra_S3', name: 'S3', parent: 'cat_Infra' },
+                                { id: 'bucket_DevOps_Pipeline', name: 'Pipeline', parent: 'cat_DevOps' },
+                                { id: 'bucket_DevOps_Monitoring', name: 'Monitoring', parent: 'cat_DevOps' }
+                            ],
+                            links: [
+                                {
+                                    source: 'bucket_Infra_EC2',
+                                    target: 'bucket_DevOps_Pipeline',
+                                    condition: 'Project IN cedlclin-dn-prd-ddev-1366',
+                                    type: 'overlap'
+                                },
+                                {
+                                    source: 'bucket_Infra_S3',
+                                    target: 'bucket_DevOps_Monitoring',
+                                    condition: 'Env IN dev AND Region IN us-east-1',
+                                    type: 'overlap'
+                                },
+                                {
+                                    source: 'bucket_Infra_EC2',
+                                    target: 'bucket_Infra_EC2',
+                                    condition: 'Tag:env=prod',
+                                    type: 'duplicate'
+                                }
+                            ]
+                        };
+                        activeTab = 2;
                     }}>
-                        Upload To Harness
+                        Load Sample Data
                     </button>
-                
+                {/if}
             </div>
         {/if}
     </div>

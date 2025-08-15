@@ -9,7 +9,8 @@
 
     const navItems = [
         { path: '/', label: 'Home', icon: Home },
-        { path: '/upload', label: 'Analyze CCs', icon: Atom },
+        { path: '/analyze', label: 'Analyze CCs', icon: Atom },
+        { path: '/upload', label: 'Upload CCs', icon: Atom },
         { path: '/fetch', label: 'Download CCs', icon: Download },
         { path: '/settings', label: 'Settings', icon: Settings }
     ];

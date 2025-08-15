@@ -10,7 +10,8 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "lint": "echo \"No linter configured\"",
-    "custom" : "vitest tests/custom1/custom.test.js"
+    "custom" : "vitest tests/custom1/custom.test.js",
+    "report" : "vitest tests/report/report.test.js"
   },
   "keywords": [],
   "author": "",
