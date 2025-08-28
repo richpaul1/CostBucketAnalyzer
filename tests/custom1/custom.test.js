@@ -1,5 +1,5 @@
 
-import conversion from '../../src/lib/arloconversion';
+import conversion from '../../src/lib/conversion/aconversionv2';
 
 // Your full (or as complete as possible) case statement string
 const awsCaseStatement = `
@@ -379,7 +379,7 @@ when(
 
 describe('custom.test.js', () => {
   it.only('convert word to CC', async () => {
-    const output = conversion.convert(awsCaseStatement,'ccs','1001');
+    const output = conversion.convert(awsCaseStatement,'Service Items','SxuV0ChbRqWGSYClFlMQMQ');
     const fs = require('fs');
     const outputFileName = 'output.json';
     fs.writeFileSync(outputFileName, JSON.stringify(output, null, 2));
