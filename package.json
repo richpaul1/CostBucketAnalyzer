@@ -9,6 +9,9 @@
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",
+    "test:functional": "vitest tests/harness-upload-functional.test.js",
+    "test:functional:verbose": "vitest tests/harness-upload-functional.test.js --reporter=verbose",
+    "setup:credentials": "node setup-test-credentials.js",
     "lint": "echo \"No linter configured\"",
     "custom" : "vitest tests/custom1/custom.test.js",
     "report" : "vitest tests/report/report.test.js"

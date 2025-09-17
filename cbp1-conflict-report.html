@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBP1 Conflict Analysis Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; }
+        .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .metric { background: #ecf0f1; padding: 15px; border-radius: 5px; text-align: center; }
+        .metric-value { font-size: 24px; font-weight: bold; color: #2c3e50; }
+        .metric-label { color: #7f8c8d; font-size: 14px; }
+        .conflict-duplicate { background-color: #fff3cd; border-left: 4px solid #ffc107; }
+        .conflict-overlap { background-color: #f8d7da; border-left: 4px solid #dc3545; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #f8f9fa; font-weight: bold; }
+        .condition { font-family: monospace; background-color: #f8f9fa; padding: 4px; border-radius: 3px; }
+        .no-conflicts { background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 5px; padding: 15px; color: #155724; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 CBP1 Conflict Analysis Report</h1>
+        <p><strong>Generated:</strong> 9/8/2025, 7:04:06 PM</p>
+        <p><strong>Data Source:</strong> costcat/cbp1.json</p>
+
+        <div class="summary">
+            <div class="metric">
+                <div class="metric-value">3</div>
+                <div class="metric-label">Cost Categories</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">483</div>
+                <div class="metric-label">Cost Targets</div>
+            </div>
+            <div class="metric conflict-overlap">
+                <div class="metric-value">12</div>
+                <div class="metric-label">Total Conflicts</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">10</div>
+                <div class="metric-label">Duplicate Conflicts</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">2</div>
+                <div class="metric-label">Overlap Conflicts</div>
+            </div>
+        </div>
+
+        
+        <h2>🚨 Detected Conflicts</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Type</th>
+                    <th>Source</th>
+                    <th>Target</th>
+                    <th>Condition</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr class="conflict-duplicate">
+                    <td>1</td>
+                    <td><strong>DUPLICATE</strong></td>
+                    <td>Programs."TASPD-ATS"</td>
+                    <td>Programs."TASPD-ATS"</td>
+                    <td class="condition">Projects IN TASPD-ATSC-MDL</td>
+                </tr>
+                
+                <tr class="conflict-overlap">
+                    <td>2</td>
+                    <td><strong>OVERLAP</strong></td>
+                    <td>Programs."TASPD-ATS"</td>
+                    <td>Programs."TASPD-ATS/AFI"</td>
+                    <td class="condition">Projects IN TASPD-BDS</td>
+                </tr>
+                
+                <tr class="conflict-duplicate">
+                    <td>3</td>
+                    <td><strong>DUPLICATE</strong></td>
+                    <td>Projects."TASPD-CARGO-TREND-ANALYSIS"</td>
+                    <td>Projects."TASPD-CARGO-TREND-ANALYSIS"</td>
+                    <td class="condition">user_cost_center IN TASPD AND user_project_1 IN cargo-trend-analysis</td>
+                </tr>
+                
+                <tr class="conflict-duplicate">
+                    <td>4</td>
+                    <td><strong>DUPLICATE</strong></td>
+                    <td>Projects."TASPD-CARGO-TREND-ANALYSIS"</td>
+                    <td>Projects."TASPD-CARGO-TREND-ANALYSIS"</td>
+                    <td class="condition">https://url.us.m.mimecastprotect.com/s/bHgaCxkxR1hrY8JQhwsksy6opY?domain=k8s.cbp.dhs.gov IN TASPD AND https://url.us.m.mimecastprotect.com/s/KQTkCyPyVXS9xDNySNtQsxyYoc?domain=k8s.cbp.dhs.gov IN cargo-trend-analysis</td>
+                </tr>
+                
+                <tr class="conflict-duplicate">
+                    <td>5</td>
+                    <td><strong>DUPLICATE</strong></td>
+                    <td>Projects."TASPD-CARGO-TREND-ANALYSIS"</td>
+                    <td>Projects."TASPD-CARGO-TREND-ANALYSIS"</td>
+                    <td class="condition">Account LIKE TASPD-CARGO-TREND-ANALYSIS</td>
+                </tr>
+                
+                <tr class="conflict-duplicate">
+                    <td>6</td>
+                    <td><strong>DUPLICATE</strong></td>
+                    <td>Projects."PSPD-LBI-LMS"</td>
+                    <td>Projects."PSPD-LBI-LMS"</td>
+                    <td class="condition">user_cost_center IN PSPD AND user_project_1 IN lbi-lms</td>
+                </tr>
+                
+                <tr class="conflict-duplicate">
+                    <td>7</td>
+                    <td><strong>DUPLICATE</strong></td>
+                    <td>Projects."PSPD-LBI-LMS"</td>
+                    <td>Projects."PSPD-LBI-LMS"</td>
+                    <td class="condition">https://url.us.m.mimecastprotect.com/s/bHgaCxkxR1hrY8JQhwsksy6opY?domain=k8s.cbp.dhs.gov IN PSPD AND https://url.us.m.mimecastprotect.com/s/KQTkCyPyVXS9xDNySNtQsxyYoc?domain=k8s.cbp.dhs.gov IN lbi-lms</td>
+                </tr>
+                
+                <tr class="conflict-duplicate">
+                    <td>8</td>
+                    <td><strong>DUPLICATE</strong></td>
+                    <td>Projects."PSPD-LBI-LMS"</td>
+                    <td>Projects."PSPD-LBI-LMS"</td>
+                    <td class="condition">Account LIKE PSPD-LBI-LMS</td>
+                </tr>
+                
+                <tr class="conflict-duplicate">
+                    <td>9</td>
+                    <td><strong>DUPLICATE</strong></td>
+                    <td>Projects."BEMSD-WCR-WEBSIRS"</td>
+                    <td>Projects."BEMSD-WCR-WEBSIRS"</td>
+                    <td class="condition">user_cost_center IN BEMSD AND user_project_1 IN wcr-websirs</td>
+                </tr>
+                
+                <tr class="conflict-duplicate">
+                    <td>10</td>
+                    <td><strong>DUPLICATE</strong></td>
+                    <td>Projects."BEMSD-WCR-WEBSIRS"</td>
+                    <td>Projects."BEMSD-WCR-WEBSIRS"</td>
+                    <td class="condition">https://url.us.m.mimecastprotect.com/s/bHgaCxkxR1hrY8JQhwsksy6opY?domain=k8s.cbp.dhs.gov IN BEMSD AND https://url.us.m.mimecastprotect.com/s/KQTkCyPyVXS9xDNySNtQsxyYoc?domain=k8s.cbp.dhs.gov IN wcr-websirs</td>
+                </tr>
+                
+                <tr class="conflict-duplicate">
+                    <td>11</td>
+                    <td><strong>DUPLICATE</strong></td>
+                    <td>Projects."BEMSD-WCR-WEBSIRS"</td>
+                    <td>Projects."BEMSD-WCR-WEBSIRS"</td>
+                    <td class="condition">Account LIKE BEMSD-WCR-WEBSIRS</td>
+                </tr>
+                
+                <tr class="conflict-overlap">
+                    <td>12</td>
+                    <td><strong>OVERLAP</strong></td>
+                    <td>Projects."OIT-DATATRANSFERS"</td>
+                    <td>Projects."EIOD-DATATRANSFERS"</td>
+                    <td class="condition">awspayeraccountid IN 173023000554 AND Account IN OIT-CME-SHARED-SERVICES-TIER1-PROD (011755989612) AND Service IN AWS Data Transfer</td>
+                </tr>
+                
+            </tbody>
+        </table>
+        
+
+        <h2>📊 Data Overview</h2>
+        <table>
+            <thead>
+                <tr><th>Category</th><th>Cost Targets</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td><strong>Programs</strong></td>
+                    <td>27</td>
+                    <td>Cost allocation rules for programs</td>
+                </tr>
+                
+                <tr>
+                    <td><strong>Projects</strong></td>
+                    <td>437</td>
+                    <td>Cost allocation rules for projects</td>
+                </tr>
+                
+                <tr>
+                    <td><strong>Cost Center</strong></td>
+                    <td>19</td>
+                    <td>Cost allocation rules for cost center</td>
+                </tr>
+                
+            </tbody>
+        </table>
+
+        <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; color: #7f8c8d; text-align: center;">
+            <p>Generated by Cost Bucket Analyzer - CBP1 Conflict Analysis Tool</p>
+        </footer>
+    </div>
+</body>
+</html>

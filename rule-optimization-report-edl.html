@@ -1,0 +1,1739 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detailed Rule Optimization Report - EDL</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        .container { max-width: 1400px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .metric { background: #ecf0f1; padding: 15px; border-radius: 5px; text-align: center; }
+        .metric-value { font-size: 24px; font-weight: bold; color: #2c3e50; }
+        .metric-label { color: #7f8c8d; font-size: 14px; }
+        .rule-example { background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px; margin: 15px 0; padding: 15px; }
+        .rule-current { background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 10px; margin: 10px 0; }
+        .rule-optimized { background-color: #d1ecf1; border-left: 4px solid #17a2b8; padding: 10px; margin: 10px 0; }
+        .code { background-color: #f8f9fa; padding: 8px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 12px; overflow-x: auto; }
+        .json-code { background-color: #2d3748; color: #e2e8f0; padding: 15px; border-radius: 5px; font-family: 'Courier New', monospace; font-size: 12px; overflow-x: auto; white-space: pre-wrap; }
+        .values-list { max-height: 200px; overflow-y: auto; background-color: #f8f9fa; padding: 10px; border-radius: 3px; margin: 5px 0; }
+        .optimization-benefit { background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 5px; padding: 10px; margin: 10px 0; }
+        .performance-impact { background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 5px; padding: 10px; margin: 10px 0; }
+        .split-rule { background-color: #e2f3ff; border: 1px solid #b8daff; border-radius: 5px; padding: 10px; margin: 5px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #f8f9fa; font-weight: bold; }
+        .operator-in { color: #27ae60; font-weight: bold; }
+        .operator-like { color: #e74c3c; font-weight: bold; }
+        .value-count-high { color: #e67e22; font-weight: bold; }
+        .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+        .before { border-left: 4px solid #e74c3c; }
+        .after { border-left: 4px solid #27ae60; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Detailed Rule Optimization Report - EDL</h1>
+        <p><strong>Generated:</strong> 9/8/2025, 6:47:56 PM</p>
+        <p><strong>Target Bucket:</strong> edl</p>
+
+        <div class="summary">
+            <div class="metric">
+                <div class="metric-value">1173</div>
+                <div class="metric-label">Total Rules Analyzed</div>
+            </div>
+            <div class="metric critical-performance">
+                <div class="metric-value">21</div>
+                <div class="metric-label">EDL Rules Needing Optimization</div>
+            </div>
+            <div class="metric high-performance">
+                <div class="metric-value">12</div>
+                <div class="metric-label">EDL Rules Already Optimized</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">19</div>
+                <div class="metric-label">Critical Issues (LIKE operators)</div>
+            </div>
+        </div>
+
+        
+        <div class="optimization-benefit">
+            <h3>✅ Good News: 12 EDL rules are already well-optimized!</h3>
+            <p>These rules use efficient IN operators with proper indexing and don't require any changes. Only the 21 problematic rules shown below need attention.</p>
+        </div>
+        
+
+        <h2>🚨 EDL Rules Requiring Optimization</h2>
+        <p><strong>Focus:</strong> Only showing rules with performance issues. LIKE operators require full table scans and must be optimized. Well-performing IN operators are excluded from this report.</p>
+
+        
+
+        
+        <div class="rule-example">
+            <h3>Rule 1: Mapped Application.credit edl</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "cedl-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: credit edl_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "cedl-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "cedl-"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 2: Mapped Application.credit edl - cibil</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "cedlin-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: credit edl - cibil_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "cedlin-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "cedlin-"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 3: Mapped Application.credit edl - cibil</h3>
+
+            <div class="optimization-benefit">
+                <strong>✅ GOOD PERFORMANCE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-not_in">NOT_IN</span><br>
+                • Value Count: 17<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>✅ Current Rule (Good Performance)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "NOT_IN",
+  "values": [
+    "noncedlin-biaas-dev-spst-c46e",
+    "noncedlin-biaas-prod-spst-a633",
+    "noncedlin-biaas-qa-spst-01dd",
+    "noncedlin-biaas-rnd-spst-05c8",
+    "noncedlin-si-dev-att-1802",
+    "noncedlin-si-dev-cs-ae75",
+    "noncedlin-si-dev-rmi-86c3",
+    "noncedlin-si-dev-tid-97c2",
+    "noncedlin-si-prod-att-6c11",
+    "noncedlin-si-prod-cs-0c3c",
+    ... and 7 more values
+  ]
+}</div>
+                    
+                    <div class="optimization-benefit">
+                        <strong>✅ IN Operator is Efficient:</strong><br>
+                        • Uses database indexes for fast lookup<br>
+                        • O(log n) performance with proper indexing<br>
+                        • Scales well with large datasets<br>
+                        • 17 values is perfectly fine for IN operator<br>
+                        • No optimization needed - this rule performs well
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    <div class="split-rule">
+                            <strong>Convert LIKE to IN:</strong> Replace pattern matching with exact value matching
+                        </div>
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> NOT_IN with 17 values can be slow - consider restructuring logic
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "noncedlin-biaas-dev-spst-c46e"<br>2. "noncedlin-biaas-prod-spst-a633"<br>3. "noncedlin-biaas-qa-spst-01dd"<br>4. "noncedlin-biaas-rnd-spst-05c8"<br>5. "noncedlin-si-dev-att-1802"<br>6. "noncedlin-si-dev-cs-ae75"<br>7. "noncedlin-si-dev-rmi-86c3"<br>8. "noncedlin-si-dev-tid-97c2"<br>9. "noncedlin-si-prod-att-6c11"<br>10. "noncedlin-si-prod-cs-0c3c"<br>11. "noncedlin-si-prod-rmi-4ed9"<br>12. "noncedlin-si-prod-tid-498e"<br>13. "noncedlin-si-qa-att-1198"<br>14. "noncedlin-si-qa-cs-d2fe"<br>15. "noncedlin-si-qa-rmi-2dde"<br>16. "noncedlin-si-qa-tid-6a19"<br>17. "noncedlin-si-rnd-att-afb8"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 4: Mapped Application.edl</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "onetrudemo-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: edl_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "onetrudemo-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "onetrudemo-"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 5: Mapped Application.edl</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "onetruprod-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: edl_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "onetruprod-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "onetruprod-"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 6: Mapped Application.edl</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "onetruqa-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: edl_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "onetruqa-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "onetruqa-"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 7: Mapped Application.edl</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "onetruddev-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: edl_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "onetruddev-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "onetruddev-"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 8: Mapped Application.edl</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "onetrufdev-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: edl_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "onetrufdev-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "onetrufdev-"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 9: Mapped Application.edl</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "onetrustg-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: edl_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "onetrustg-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "onetrustg-"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 10: Mapped Application.edl</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "onetruprd-ns1-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: edl_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "onetruprd-ns1-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "onetruprd-ns1-"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 11: Mapped Application.non credit edl-in</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "noncedlin-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: non credit edl-in_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "noncedlin-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "noncedlin-"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 12: Mapped Product.credit edl</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "cedl-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: credit edl_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "cedl-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "cedl-"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 13: Mapped Product.credit edl - cibil</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "cedlin-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: credit edl - cibil_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "cedlin-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "cedlin-"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 14: Mapped Product.credit edl - cibil</h3>
+
+            <div class="optimization-benefit">
+                <strong>✅ GOOD PERFORMANCE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-not_in">NOT_IN</span><br>
+                • Value Count: 17<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>✅ Current Rule (Good Performance)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "NOT_IN",
+  "values": [
+    "noncedlin-biaas-dev-spst-c46e",
+    "noncedlin-biaas-prod-spst-a633",
+    "noncedlin-biaas-qa-spst-01dd",
+    "noncedlin-biaas-rnd-spst-05c8",
+    "noncedlin-si-dev-att-1802",
+    "noncedlin-si-dev-cs-ae75",
+    "noncedlin-si-dev-rmi-86c3",
+    "noncedlin-si-dev-tid-97c2",
+    "noncedlin-si-prod-att-6c11",
+    "noncedlin-si-prod-cs-0c3c",
+    ... and 7 more values
+  ]
+}</div>
+                    
+                    <div class="optimization-benefit">
+                        <strong>✅ IN Operator is Efficient:</strong><br>
+                        • Uses database indexes for fast lookup<br>
+                        • O(log n) performance with proper indexing<br>
+                        • Scales well with large datasets<br>
+                        • 17 values is perfectly fine for IN operator<br>
+                        • No optimization needed - this rule performs well
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    <div class="split-rule">
+                            <strong>Convert LIKE to IN:</strong> Replace pattern matching with exact value matching
+                        </div>
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> NOT_IN with 17 values can be slow - consider restructuring logic
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "noncedlin-biaas-dev-spst-c46e"<br>2. "noncedlin-biaas-prod-spst-a633"<br>3. "noncedlin-biaas-qa-spst-01dd"<br>4. "noncedlin-biaas-rnd-spst-05c8"<br>5. "noncedlin-si-dev-att-1802"<br>6. "noncedlin-si-dev-cs-ae75"<br>7. "noncedlin-si-dev-rmi-86c3"<br>8. "noncedlin-si-dev-tid-97c2"<br>9. "noncedlin-si-prod-att-6c11"<br>10. "noncedlin-si-prod-cs-0c3c"<br>11. "noncedlin-si-prod-rmi-4ed9"<br>12. "noncedlin-si-prod-tid-498e"<br>13. "noncedlin-si-qa-att-1198"<br>14. "noncedlin-si-qa-cs-d2fe"<br>15. "noncedlin-si-qa-rmi-2dde"<br>16. "noncedlin-si-qa-tid-6a19"<br>17. "noncedlin-si-rnd-att-afb8"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 15: Mapped Product.edl</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "onetrudemo-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: edl_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "onetrudemo-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "onetrudemo-"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 16: Mapped Product.edl</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "onetruprod-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: edl_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "onetruprod-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "onetruprod-"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 17: Mapped Product.edl</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "onetruqa-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: edl_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "onetruqa-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "onetruqa-"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 18: Mapped Product.edl</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "onetruddev-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: edl_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "onetruddev-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "onetruddev-"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 19: Mapped Product.edl</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "onetrustg-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: edl_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "onetrustg-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "onetrustg-"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 20: Mapped Product.edl</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "onetrufdev-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: edl_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "onetrufdev-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "onetrufdev-"
+                
+            </div>
+        </div>
+        
+        <div class="rule-example">
+            <h3>Rule 21: Mapped Product.edl</h3>
+
+            <div class="performance-impact">
+                <strong>🚨 CRITICAL PERFORMANCE ISSUE:</strong><br>
+                • Field: Project<br>
+                • Operator: <span class="operator-like">LIKE</span><br>
+                • Value Count: 1<br>
+                • Query Performance: 🚨 Slow - Requires Full Table Scan<br>
+                • Index Usage: ❌ Cannot use indexes effectively
+            </div>
+
+            <div class="before-after">
+                <div class="before">
+                    <h4>🔴 Current Rule (CRITICAL ISSUE)</h4>
+                    <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "LIKE",
+  "values": [
+    "onetruprd-ns1-"
+  ]
+}</div>
+                    
+                    <div class="performance-impact">
+                        <strong>🚨 Critical Issues with LIKE:</strong><br>
+                        • Requires full table scan - cannot use indexes<br>
+                        • Scans every row in the database table<br>
+                        • Performance degrades linearly with table size<br>
+                        • Blocks other queries during scan<br>
+                        • Major bottleneck for OneTru performance
+                    </div>
+                    
+                </div>
+
+                <div class="after">
+                    <h4>✅ Optimized Rules (CRITICAL - Must Fix)</h4>
+                    
+                        <div class="split-rule">
+                            <strong>Optimized Rule 1: edl_exact_matches</strong>
+                            <div class="json-code">{
+  "viewField": {
+    "fieldId": "gcpProjectId",
+    "fieldName": "Project"
+  },
+  "viewOperator": "IN",
+  "values": [
+    "onetruprd-ns1-"
+  ]
+}</div>
+                        </div>
+                        
+                    <div class="optimization-benefit">
+                        <strong>🚀 Performance Benefits:</strong><br>
+                        • 100-1000x faster query execution<br>
+                        • Uses database indexes instead of table scans<br>
+                        • Eliminates OneTru performance bottleneck<br>
+                        • Scales with database size<br>
+                        • Reduces server load dramatically
+                    </div>
+                </div>
+            </div>
+
+            <div class="optimization-benefit">
+                <strong>💡 Optimization Strategy:</strong> Convert all 1 LIKE patterns to IN operator (100-1000x performance improvement)
+            </div>
+
+            <h4>📋 Sample Values (First 20)</h4>
+            <div class="values-list">
+                1. "onetruprd-ns1-"
+                
+            </div>
+        </div>
+        
+
+        <h2>📈 Performance Improvement Estimates</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Current</th>
+                    <th>After Optimization</th>
+                    <th>Improvement</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Query Execution Time</td>
+                    <td>53ms (estimated)</td>
+                    <td>6ms (estimated)</td>
+                    <td class="optimization-benefit">10x faster</td>
+                </tr>
+                <tr>
+                    <td>Memory Usage</td>
+                    <td>High (large value arrays)</td>
+                    <td>Low (smaller chunks)</td>
+                    <td class="optimization-benefit">50-80% reduction</td>
+                </tr>
+                <tr>
+                    <td>SQL Query Complexity</td>
+                    <td>Very High</td>
+                    <td>Moderate</td>
+                    <td class="optimization-benefit">Significant reduction</td>
+                </tr>
+                <tr>
+                    <td>Maintainability</td>
+                    <td>Difficult</td>
+                    <td>Easy</td>
+                    <td class="optimization-benefit">Much easier to debug</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🛠️ Implementation Steps</h2>
+        <div class="optimization-benefit">
+            <h3>Phase 1: Immediate (Low Risk)</h3>
+            <ol>
+                <li><strong>Backup current rules:</strong> Export existing EDL rule configuration</li>
+                <li><strong>Create test environment:</strong> Set up staging environment for testing</li>
+                <li><strong>Implement caching:</strong> Add result caching for EDL evaluations</li>
+                <li><strong>Monitor performance:</strong> Establish baseline metrics</li>
+            </ol>
+
+            <h3>Phase 2: Rule Optimization (Medium Risk)</h3>
+            <ol>
+                <li><strong>Split large rules:</strong> Break rules with >100 values into chunks of 50</li>
+                <li><strong>Test functionality:</strong> Verify cost allocation accuracy</li>
+                <li><strong>Performance testing:</strong> Measure improvement in staging</li>
+                <li><strong>Gradual rollout:</strong> Deploy to production with monitoring</li>
+            </ol>
+
+            <h3>Phase 3: Architecture Review (Higher Risk)</h3>
+            <ol>
+                <li><strong>Rule restructuring:</strong> Consider fundamental changes to EDL architecture</li>
+                <li><strong>Database optimization:</strong> Review indexes and query plans</li>
+                <li><strong>Alternative approaches:</strong> Evaluate different rule evaluation strategies</li>
+            </ol>
+        </div>
+
+        <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; color: #7f8c8d; text-align: center;">
+            <p>Generated by Cost Bucket Analyzer - Detailed Rule Performance Analysis Tool</p>
+            <p>Focus: EDL Bucket Optimization</p>
+        </footer>
+    </div>
+</body>
+</html>

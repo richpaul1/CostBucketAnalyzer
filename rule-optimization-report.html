@@ -1,0 +1,3207 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rule Optimization Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; }
+        .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .metric { background: #ecf0f1; padding: 15px; border-radius: 5px; text-align: center; }
+        .metric-value { font-size: 24px; font-weight: bold; color: #2c3e50; }
+        .metric-label { color: #7f8c8d; font-size: 14px; }
+        .high-performance { background-color: #d5f4e6; border-left: 4px solid #27ae60; }
+        .low-performance { background-color: #fadbd8; border-left: 4px solid #e74c3c; }
+        .critical-performance { background-color: #f8d7da; border-left: 4px solid #dc3545; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #f8f9fa; font-weight: bold; }
+        .operator-in { color: #27ae60; font-weight: bold; }
+        .operator-like { color: #e74c3c; font-weight: bold; }
+        .value-count-high { color: #e67e22; font-weight: bold; }
+        .optimization { background-color: #fff3cd; padding: 10px; border-radius: 5px; margin: 5px 0; border-left: 4px solid #ffc107; }
+        .issue-critical { background-color: #f8d7da; }
+        .issue-high { background-color: #fadbd8; }
+        .issue-medium { background-color: #fff3cd; }
+        .code { background-color: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: monospace; }
+        .recommendation { background-color: #d1ecf1; padding: 10px; border-radius: 5px; margin: 5px 0; border-left: 4px solid #17a2b8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Rule Optimization Report</h1>
+        <p><strong>Generated:</strong> 9/8/2025, 6:30:28 PM</p>
+
+        <div class="summary">
+            <div class="metric">
+                <div class="metric-value">1173</div>
+                <div class="metric-label">Total Rules</div>
+            </div>
+            <div class="metric high-performance">
+                <div class="metric-value">1024</div>
+                <div class="metric-label">High-Performance (IN)</div>
+            </div>
+            <div class="metric low-performance">
+                <div class="metric-value">259</div>
+                <div class="metric-label">Low-Performance (LIKE)</div>
+            </div>
+            <div class="metric critical-performance">
+                <div class="metric-value">2</div>
+                <div class="metric-label">Critical EDL Issues</div>
+            </div>
+        </div>
+
+        <h2>🚨 Top Performance Issues</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Bucket</th>
+                    <th>Category</th>
+                    <th>Issue</th>
+                    <th>Impact Score</th>
+                    <th>Operator</th>
+                    <th>Values</th>
+                    <th>Recommendation</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr class="issue-critical">
+                    <td>1</td>
+                    <td><strong>edl</strong></td>
+                    <td>Mapped Application</td>
+                    <td>Large IN operator with 3542 values</td>
+                    <td><strong>7084</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">3542</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-critical">
+                    <td>2</td>
+                    <td><strong>edl</strong></td>
+                    <td>Mapped Product</td>
+                    <td>Large IN operator with 3542 values</td>
+                    <td><strong>7084</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">3542</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-critical">
+                    <td>3</td>
+                    <td><strong>prod</strong></td>
+                    <td>Env</td>
+                    <td>Large IN operator with 1792 values</td>
+                    <td><strong>3584</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">1792</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-critical">
+                    <td>4</td>
+                    <td><strong>qa</strong></td>
+                    <td>Env</td>
+                    <td>Large IN operator with 1519 values</td>
+                    <td><strong>3038</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">1519</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-critical">
+                    <td>5</td>
+                    <td><strong>onetru dev</strong></td>
+                    <td>Customized Mapping</td>
+                    <td>Large IN operator with 1508 values</td>
+                    <td><strong>3016</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">1508</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-critical">
+                    <td>6</td>
+                    <td><strong>demo</strong></td>
+                    <td>Env</td>
+                    <td>Large IN operator with 881 values</td>
+                    <td><strong>1762</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">881</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-critical">
+                    <td>7</td>
+                    <td><strong>onetru credit cibil india</strong></td>
+                    <td>Customized Mapping</td>
+                    <td>Large IN operator with 786 values</td>
+                    <td><strong>1572</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">786</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-critical">
+                    <td>8</td>
+                    <td><strong>dev</strong></td>
+                    <td>Env</td>
+                    <td>Large IN operator with 526 values</td>
+                    <td><strong>1052</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">526</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-high">
+                    <td>9</td>
+                    <td><strong>prod</strong></td>
+                    <td>Env</td>
+                    <td>Large IN operator with 325 values</td>
+                    <td><strong>650</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">325</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-high">
+                    <td>10</td>
+                    <td><strong>rnd</strong></td>
+                    <td>Env</td>
+                    <td>Large IN operator with 300 values</td>
+                    <td><strong>600</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">300</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-medium">
+                    <td>11</td>
+                    <td><strong>onetru non-credit us</strong></td>
+                    <td>Customized Mapping</td>
+                    <td>Large IN operator with 248 values</td>
+                    <td><strong>496</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">248</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-medium">
+                    <td>12</td>
+                    <td><strong>dev</strong></td>
+                    <td>Env</td>
+                    <td>Large IN operator with 239 values</td>
+                    <td><strong>478</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">239</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-medium">
+                    <td>13</td>
+                    <td><strong>stg</strong></td>
+                    <td>Env</td>
+                    <td>Large IN operator with 228 values</td>
+                    <td><strong>456</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">228</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-medium">
+                    <td>14</td>
+                    <td><strong>fdev</strong></td>
+                    <td>Env</td>
+                    <td>Large IN operator with 182 values</td>
+                    <td><strong>364</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">182</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-medium">
+                    <td>15</td>
+                    <td><strong>cloud services</strong></td>
+                    <td>Mapped Application</td>
+                    <td>Large IN operator with 162 values</td>
+                    <td><strong>324</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">162</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-medium">
+                    <td>16</td>
+                    <td><strong>cloud services</strong></td>
+                    <td>Mapped Product</td>
+                    <td>Large IN operator with 160 values</td>
+                    <td><strong>320</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">160</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-medium">
+                    <td>17</td>
+                    <td><strong>ddev</strong></td>
+                    <td>Env</td>
+                    <td>Large IN operator with 160 values</td>
+                    <td><strong>320</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">160</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-medium">
+                    <td>18</td>
+                    <td><strong>onetru multiparty cleanroom</strong></td>
+                    <td>Mapped Application</td>
+                    <td>Large IN operator with 159 values</td>
+                    <td><strong>318</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">159</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-medium">
+                    <td>19</td>
+                    <td><strong>onetru multiparty cleanroom</strong></td>
+                    <td>Mapped Product</td>
+                    <td>Large IN operator with 159 values</td>
+                    <td><strong>318</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">159</td>
+                    <td class="recommendation">Split into multiple smaller rules or use range conditions</td>
+                </tr>
+                
+                <tr class="issue-medium">
+                    <td>20</td>
+                    <td><strong>edl-in</strong></td>
+                    <td>Mapped Application</td>
+                    <td>EDL bucket complexity</td>
+                    <td><strong>295</strong></td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="">59</td>
+                    <td class="recommendation">Cache EDL results or split into smaller buckets</td>
+                </tr>
+                
+            </tbody>
+        </table>
+
+        <h2>⚡ LIKE Operator Optimizations</h2>
+        <p>LIKE operators require full table scans and should be optimized or replaced with IN operators when possible.</p>
+
+        <p>✅ No LIKE optimization opportunities found.</p>
+
+        <h2>📊 Operator Performance Analysis</h2>
+
+        <h3 class="high-performance">✅ High-Performance Rules (IN Operator)</h3>
+        <p>These rules use indexed lookups and perform well:</p>
+        <table>
+            <thead>
+                <tr><th>Bucket</th><th>Category</th><th>Field</th><th>Values</th><th>Performance</th></tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>Argus prod</td>
+                    <td>test cost category</td>
+                    <td>Account</td>
+                    <td>2</td>
+                    <td class="operator-in">EXCELLENT</td>
+                </tr>
+                
+                <tr>
+                    <td>credit edl prod</td>
+                    <td>test cost category</td>
+                    <td>Project</td>
+                    <td>2</td>
+                    <td class="operator-in">EXCELLENT</td>
+                </tr>
+                
+                <tr>
+                    <td>tu uk prod</td>
+                    <td>test cost category</td>
+                    <td>Subscription id</td>
+                    <td>2</td>
+                    <td class="operator-in">EXCELLENT</td>
+                </tr>
+                
+                <tr>
+                    <td>7460</td>
+                    <td>test cost category</td>
+                    <td>Business Domains</td>
+                    <td>1</td>
+                    <td class="operator-in">EXCELLENT</td>
+                </tr>
+                
+                <tr>
+                    <td>7460</td>
+                    <td>test cost category</td>
+                    <td>Friendly Payer Account Name</td>
+                    <td>13</td>
+                    <td class="operator-in">EXCELLENT</td>
+                </tr>
+                
+                <tr>
+                    <td>international</td>
+                    <td>test cost category</td>
+                    <td>Business Domains</td>
+                    <td>1</td>
+                    <td class="operator-in">EXCELLENT</td>
+                </tr>
+                
+                <tr>
+                    <td>international</td>
+                    <td>test cost category</td>
+                    <td>Friendly Payer Account Name</td>
+                    <td>2</td>
+                    <td class="operator-in">EXCELLENT</td>
+                </tr>
+                
+                <tr>
+                    <td>international</td>
+                    <td>test cost category</td>
+                    <td>Project</td>
+                    <td>14</td>
+                    <td class="operator-in">EXCELLENT</td>
+                </tr>
+                
+                <tr>
+                    <td>international</td>
+                    <td>test cost category</td>
+                    <td>Business Domains</td>
+                    <td>1</td>
+                    <td class="operator-in">EXCELLENT</td>
+                </tr>
+                
+                <tr>
+                    <td>dir</td>
+                    <td>Mapped Application</td>
+                    <td>Account</td>
+                    <td>1</td>
+                    <td class="operator-in">EXCELLENT</td>
+                </tr>
+                
+                <tr><td colspan="5"><em>... and 1014 more high-performance rules</em></td></tr>
+            </tbody>
+        </table>
+
+        <h3 class="low-performance">⚠️ Low-Performance Rules (LIKE Operator)</h3>
+        <p>These rules require table scans and should be optimized:</p>
+        <table>
+            <thead>
+                <tr><th>Bucket</th><th>Category</th><th>Field</th><th>Patterns</th><th>Impact</th><th>Recommendation</th></tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>cloud security</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>ipi</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>cloud services</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>credit edl</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>cloud services mft</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>data acquisition</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>data acquisition</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>platformnetworkingservice</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>tucp</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>active directory</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>active directory</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>active directory</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>appdev-services-in-artifactory</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>credit edl - cibil</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>custom analytics</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>edl</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>edl</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>edl</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>edl</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>edl</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>edl</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>edl</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>gpam</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>gtpiam-usc</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>oneid</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>oneid customer intelligence</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>oneid data products</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>trulookup</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>kong-us-central</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>uk emaas</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>global-operations-initiatives</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>frankfurt pingciam</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>non credit edl-in</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>opensearch-frankfurt-pci</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>data-science-confidential</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>ip-intelligence</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>tucpcanada</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>ping-ciam-tuindas</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>truiq insights</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>centralized devops</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>netsec-automation-framework</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>trusted execution environment docker</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>business listings</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>tucp philippines</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>peoplesoft-erp-suite</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>canada-palo-alto-ips</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>ping-ciam-php</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>ping-ciam-sa</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>api-marketplace-philippines</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>bureau-in-a-box-php</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>bureau-in-a-box-php</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>iam-philippines</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>kong-philippines</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>enterprise-subject-selection</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>branded-call-display</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-analytics</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-analytics</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-analytics</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-analytics</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-analytics</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-analytics</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-analytics</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-analytics</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-analytics</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-analytics</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-analytics</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-analytics</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-analytics</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-analytics</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-analytics</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-core</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-core</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-core</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-core</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-core</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-core</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-core</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-core</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-core</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-core</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-core</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-core</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-core</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-core</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-core</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-fulfillment-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-fulfillment-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-fulfillment-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-fulfillment-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-fulfillment-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-fulfillment-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-fulfillment-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-fulfillment-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-fulfillment-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-fulfillment-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-fulfillment-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-fulfillment-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-fulfillment-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-fulfillment-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-fulfillment-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-landing-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-landing-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-landing-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-landing-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-landing-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-landing-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-landing-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-landing-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-landing-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-landing-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-landing-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-landing-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-landing-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-landing-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-landing-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-online</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-online</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-online</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-online</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-online</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-online</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-online</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-online</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-online</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-online</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-online</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-online</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-online</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-online</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-online</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-persistent-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-persistent-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-persistent-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-persistent-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-persistent-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-persistent-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-persistent-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-persistent-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-persistent-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-persistent-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-persistent-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-persistent-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-persistent-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-persistent-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-persistent-zone</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-reporting</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-reporting</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-reporting</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-reporting</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-reporting</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-reporting</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-reporting</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-reporting</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-reporting</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-reporting</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-reporting</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-reporting</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-reporting</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-reporting</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-reporting</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-data-acquisition</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-data-acquisition</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-data-acquisition</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-batch</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-batch</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-batch</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>data science</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>cloud security</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>cloud security</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>ipi</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>credit edl</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>cloud services mft</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>data acquisition</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>data acquisition</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru dataenrichmenttde</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>orion</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>platformnetworkingservice</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>tucp</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>active directory</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>active directory</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>active directory</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>appdev-services-in-artifactory</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>credit edl - cibil</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>custom analytics</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>edl</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>edl</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>edl</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>edl</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>edl</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>edl</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>edl</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>gpam</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>gtpiam-usc</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>oneid</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>oneid customer intelligence</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>oneid data products</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-uk-credit-tier</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-us-credit-tier</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>trulookup</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>kong-us-central</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>uk emaas</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>frankfurt pingciam</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>global-operations-initiatives</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>opensearch-frankfurt-pci</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-ca-credit-tier</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-ph-credit-tier</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-za-credit-tier</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>ip-intelligence</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>tucpcanada</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>ping-ciam-tuindas</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>truiq insights</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>centralized devops</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>netsec-automation-framework</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>trusted execution environment docker</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>business listings</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>tucp philippines</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>peoplesoft-erp-suite</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>canada-palo-alto-ips</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>ping-ciam-php</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>ping-ciam-sa</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>api-marketplace-philippines</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>bureau-in-a-box-php</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>bureau-in-a-box-php</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>iam-philippines</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>kong-philippines</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>enterprise-subject-selection</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>branded-call-display</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru credit us</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru credit us</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru dev</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru dev</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru dev</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru dev</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru dev</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru dev</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru dev</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru non-credit us</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru non-credit us</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru credit ca</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru credit cibil india</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru credit eu</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru identity and data products</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru identity and data products</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru identity and data products</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru identity and data products</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru identity and data products</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru identity and data products</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru identity and data products</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru non-credit eu</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru credit za</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru credit ph</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>prod</td>
+                    <td>Env</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>prod</td>
+                    <td>Env</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>prod</td>
+                    <td>Env</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>stg</td>
+                    <td>Env</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>ddev</td>
+                    <td>Env</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>demo</td>
+                    <td>Env</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>fdev</td>
+                    <td>Env</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+                <tr>
+                    <td>qa</td>
+                    <td>Env</td>
+                    <td>Project</td>
+                    <td class="value-count-high">1</td>
+                    <td class="operator-like">TABLE SCAN</td>
+                    <td>Convert to IN or combine patterns</td>
+                </tr>
+                
+            </tbody>
+        </table>
+
+        <h2>🔥 High-Value Count Rules</h2>
+        <p>Rules with many values (>50) can cause performance issues regardless of operator:</p>
+        <table>
+            <thead>
+                <tr><th>Bucket</th><th>Category</th><th>Field</th><th>Operator</th><th>Value Count</th><th>Recommendation</th></tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>data science</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">76</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>activation</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">92</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>idmp</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">52</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>cloud security</td>
+                    <td>Mapped Application</td>
+                    <td>Account</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">72</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>ipi</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">57</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>cloud services</td>
+                    <td>Mapped Application</td>
+                    <td>Account</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">52</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>cloud services</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">162</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>enterprise network</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">87</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>truaudience</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">94</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>edl</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">3542</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>edl-in</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">59</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru multiparty cleanroom</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">159</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>data science</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">76</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>activation</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">92</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>idmp</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">52</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>cloud security</td>
+                    <td>Mapped Product</td>
+                    <td>Account</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">72</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>ipi</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">57</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>cloud services</td>
+                    <td>Mapped Product</td>
+                    <td>Account</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">52</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>cloud services</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">160</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>enterprise network</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">87</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>truaudience</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">94</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>edl</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">3542</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>edl-in</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">59</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru multiparty cleanroom</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">159</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-uk-credit-tier</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">88</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru-us-credit-tier</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">91</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru credit us</td>
+                    <td>Customized Mapping</td>
+                    <td>Account</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">75</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru credit us</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">85</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru dev</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">1508</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru non-credit us</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">248</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru others</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">65</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru credit cibil india</td>
+                    <td>Customized Mapping</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">786</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>onetru</td>
+                    <td>Business Units</td>
+                    <td>Mapped Product</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">94</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>dev</td>
+                    <td>Env</td>
+                    <td>Account</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">239</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>dev</td>
+                    <td>Env</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">526</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>nonprod</td>
+                    <td>Env</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">133</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>prod</td>
+                    <td>Env</td>
+                    <td>Account</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">325</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>prod</td>
+                    <td>Env</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">1792</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>rnd</td>
+                    <td>Env</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">300</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>stg</td>
+                    <td>Env</td>
+                    <td>Account</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">110</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>stg</td>
+                    <td>Env</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">228</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>ddev</td>
+                    <td>Env</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">160</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>demo</td>
+                    <td>Env</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">881</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>fdev</td>
+                    <td>Env</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">182</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+                <tr>
+                    <td>qa</td>
+                    <td>Env</td>
+                    <td>Project</td>
+                    <td><span class="operator-in">IN</span></td>
+                    <td class="value-count-high">1519</td>
+                    <td>Split into multiple rules or use range conditions</td>
+                </tr>
+                
+            </tbody>
+        </table>
+
+        <h2>🚨 EDL Performance Issues</h2>
+        <p>EDL buckets with high complexity cause cascading performance problems:</p>
+        
+        <table>
+            <thead>
+                <tr><th>Bucket</th><th>Category</th><th>Field</th><th>Values</th><th>Impact</th></tr>
+            </thead>
+            <tbody>
+                
+                <tr class="critical-performance">
+                    <td>edl</td>
+                    <td>Mapped Application</td>
+                    <td>Project</td>
+                    <td class="value-count-high">3542</td>
+                    <td>CRITICAL - Referenced by OneTru and others</td>
+                </tr>
+                
+                <tr class="critical-performance">
+                    <td>edl</td>
+                    <td>Mapped Product</td>
+                    <td>Project</td>
+                    <td class="value-count-high">3542</td>
+                    <td>CRITICAL - Referenced by OneTru and others</td>
+                </tr>
+                
+            </tbody>
+        </table>
+        
+
+        <h2>💡 Optimization Recommendations</h2>
+        <div class="recommendation">
+            <h3>Immediate Actions:</h3>
+            <ul>
+                <li><strong>Replace LIKE with IN:</strong> Convert LIKE patterns to exact matches where possible</li>
+                <li><strong>Combine LIKE patterns:</strong> Use regex to combine multiple LIKE patterns with common prefixes</li>
+                <li><strong>Index optimization:</strong> Ensure database indexes exist for all IN operator fields</li>
+                <li><strong>Cache EDL results:</strong> Implement caching for frequently accessed EDL buckets</li>
+            </ul>
+
+            <h3>Long-term Improvements:</h3>
+            <ul>
+                <li><strong>Split large rules:</strong> Break rules with >100 values into multiple smaller rules</li>
+                <li><strong>EDL restructuring:</strong> Split EDL buckets into smaller, more specific buckets</li>
+                <li><strong>Query optimization:</strong> Review database query execution plans</li>
+                <li><strong>Monitoring:</strong> Implement performance monitoring for rule evaluation times</li>
+            </ul>
+        </div>
+
+        <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; color: #7f8c8d; text-align: center;">
+            <p>Generated by Cost Bucket Analyzer - Rule Performance Analysis Tool</p>
+        </footer>
+    </div>
+</body>
+</html>

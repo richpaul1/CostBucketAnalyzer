@@ -49,7 +49,325 @@ export async function GET({ url, locals }) {
     }
 }
 
+
+
+// Helper function to create a single business mapping
+async function createBusinessMapping(accountId, apiKey, businessMappingData) {
+    try {
+        // Preserve UUIDs - do not clean them for creation
+        const cleanedData = JSON.parse(JSON.stringify(businessMappingData)); // Deep clone without UUID removal
+
+        // Build the Harness CCM API URL for creating business mapping
+        const apiUrl = new URL('https://app.harness.io/ccm/api/business-mapping');
+        apiUrl.searchParams.set('accountIdentifier', accountId);
+
+        console.log('Creating business mapping (UUIDs preserved):', JSON.stringify(cleanedData, null, 2));
+
+        // Make the API call to create business mapping
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'x-api-key': apiKey,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cleanedData)
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('Create business mapping error:', errorData);
+            return json({
+                error: errorData.message || 'Failed to create business mapping',
+                details: errorData
+            }, { status: response.status });
+        }
+
+        const data = await response.json();
+        console.log('Business mapping created successfully:', JSON.stringify(data, null, 2));
+        return json(data);
+    } catch (error) {
+        console.error('Error creating business mapping:', error);
+        return json({ error: 'Internal server error: ' + error.message }, { status: 500 });
+    }
+}
+
+// Helper function to update a single business mapping
+async function updateBusinessMapping(accountId, apiKey, businessMappingData) {
+    try {
+        // Build the Harness CCM API URL for updating business mapping
+        const apiUrl = new URL('https://app.harness.io/ccm/api/business-mapping');
+        apiUrl.searchParams.set('accountIdentifier', accountId);
+
+        console.log('Updating business mapping:', JSON.stringify(businessMappingData, null, 2));
+
+        // Make the API call to update business mapping
+        const response = await fetch(apiUrl, {
+            method: 'PUT',
+            headers: {
+                'x-api-key': apiKey,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(businessMappingData)
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('Update business mapping error:', errorData);
+            return json({
+                error: errorData.message || 'Failed to update business mapping',
+                details: errorData
+            }, { status: response.status });
+        }
+
+        const data = await response.json();
+        console.log('Business mapping updated successfully:', JSON.stringify(data, null, 2));
+        return json(data);
+    } catch (error) {
+        console.error('Error updating business mapping:', error);
+        return json({ error: 'Internal server error: ' + error.message }, { status: 500 });
+    }
+}
+
+// Helper function to enhance error messages by resolving UUIDs to Cost Category names
+function enhanceErrorMessageWithCategoryNames(errorMessage, businessMappingsData) {
+    if (!errorMessage || !businessMappingsData || !businessMappingsData.businessMappings) {
+        return errorMessage;
+    }
+
+    // Create a mapping of UUID to Category Name
+    const uuidToCategoryName = {};
+    businessMappingsData.businessMappings.forEach(mapping => {
+        if (mapping.uuid && mapping.name) {
+            uuidToCategoryName[mapping.uuid] = mapping.name;
+        }
+    });
+
+    // Enhanced error message
+    let enhancedMessage = errorMessage;
+
+    // Look for UUID patterns in the error message and replace them with names
+    Object.entries(uuidToCategoryName).forEach(([uuid, categoryName]) => {
+        // Replace UUID with "UUID (CategoryName)" format
+        const uuidRegex = new RegExp(uuid, 'g');
+        enhancedMessage = enhancedMessage.replace(uuidRegex, `${uuid} (${categoryName})`);
+    });
+
+    // Also look for common error patterns and enhance them
+    // Pattern: "No Cost Category exists with ID 'UUID'"
+    const costCategoryPattern = /No Cost Category exists with ID '([^']+)'/g;
+    enhancedMessage = enhancedMessage.replace(costCategoryPattern, (match, uuid) => {
+        const categoryName = uuidToCategoryName[uuid];
+        if (categoryName) {
+            return `No Cost Category exists with ID '${uuid}' (${categoryName})`;
+        }
+        return match;
+    });
+
+    return enhancedMessage;
+}
+
+// Helper function to upload multiple business mappings (batch operation)
+async function uploadBusinessMappings(accountId, apiKey, businessMappingsData) {
+    try {
+        const results = [];
+        const errors = [];
+
+        console.log('📦 Upload data received:', {
+            hasBusinessMappings: !!businessMappingsData.businessMappings,
+            businessMappingsCount: businessMappingsData.businessMappings?.length || 0,
+            businessMappingsType: typeof businessMappingsData.businessMappings,
+            dataKeys: Object.keys(businessMappingsData || {}),
+            firstLevelKeys: businessMappingsData ? Object.keys(businessMappingsData) : [],
+            sampleData: JSON.stringify(businessMappingsData, null, 2).substring(0, 500)
+        });
+
+        // Process each business mapping
+        for (const businessMapping of businessMappingsData.businessMappings || []) {
+            try {
+                // Check if business mapping already exists by name
+                const existingMapping = await checkBusinessMappingExists(accountId, apiKey, businessMapping.name);
+
+                let result;
+                if (existingMapping) {
+                    // Update existing mapping
+                    businessMapping.uuid = existingMapping.uuid; // Ensure we have the UUID for update
+                    result = await updateBusinessMapping(accountId, apiKey, businessMapping);
+                } else {
+                    // Create new mapping
+                    result = await createBusinessMapping(accountId, apiKey, businessMapping);
+                }
+
+                if (result.status === 200 || result.status === 201) {
+                    results.push({
+                        name: businessMapping.name,
+                        action: existingMapping ? 'updated' : 'created',
+                        success: true,
+                        data: await result.json()
+                    });
+                } else {
+                    const errorData = await result.json();
+                    console.error(`${existingMapping ? 'Update' : 'Create'} business mapping error:`, errorData);
+
+                    // Extract detailed error message from Harness API response
+                    let errorMessage = 'Unknown error';
+                    if (errorData.message) {
+                        errorMessage = errorData.message;
+                    } else if (errorData.responseMessages && errorData.responseMessages.length > 0) {
+                        errorMessage = errorData.responseMessages[0].message;
+                    } else if (errorData.error) {
+                        errorMessage = errorData.error;
+                    }
+
+                    // Enhance error message by resolving UUIDs to Cost Category names
+                    errorMessage = enhanceErrorMessageWithCategoryNames(errorMessage, businessMappingsData);
+
+                    errors.push({
+                        name: businessMapping.name,
+                        action: existingMapping ? 'update' : 'create',
+                        success: false,
+                        error: errorMessage,
+                        details: errorData // Store full error details for debugging
+                    });
+                }
+            } catch (error) {
+                errors.push({
+                    name: businessMapping.name || 'Unknown',
+                    action: 'process',
+                    success: false,
+                    error: error.message
+                });
+            }
+        }
+
+        console.log('📊 Upload completed:', {
+            totalProcessed: results.length + errors.length,
+            successful: results.length,
+            failed: errors.length,
+            resultsCount: results.length,
+            errorsCount: errors.length
+        });
+
+        return json({
+            success: errors.length === 0,
+            totalProcessed: results.length + errors.length,
+            successful: results.length,
+            failed: errors.length,
+            results,
+            errors
+        });
+    } catch (error) {
+        console.error('Error uploading business mappings:', error);
+        return json({ error: 'Internal server error: ' + error.message }, { status: 500 });
+    }
+}
+
+// Helper function to check if a business mapping exists
+async function checkBusinessMappingExists(accountId, apiKey, mappingName) {
+    try {
+        const apiUrl = new URL('https://app.harness.io/ccm/api/business-mapping');
+        apiUrl.searchParams.set('accountIdentifier', accountId);
+        apiUrl.searchParams.set('searchKey', mappingName);
+        apiUrl.searchParams.set('limit', '1');
+
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'x-api-key': apiKey
+            }
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            const mappings = data.resource?.businessMappings || [];
+            return mappings.find(mapping => mapping.name === mappingName);
+        }
+        return null;
+    } catch (error) {
+        console.error('Error checking business mapping existence:', error);
+        return null;
+    }
+}
+
+/** @type {import('./$types').RequestHandler} */
 export async function POST({ request, locals }) {
+    try {
+        // Get the request body first
+        const body = await request.json();
+        const { action, businessMappingData } = body;
+
+        // Handle debug action without authentication
+        if (action === 'debug') {
+            console.log('🐛 DEBUG: Received data structure:', {
+                hasBusinessMappingData: !!businessMappingData,
+                businessMappingDataType: typeof businessMappingData,
+                businessMappingDataKeys: businessMappingData ? Object.keys(businessMappingData) : [],
+                hasBusinessMappings: !!businessMappingData?.businessMappings,
+                businessMappingsCount: businessMappingData?.businessMappings?.length || 0,
+                businessMappingsType: typeof businessMappingData?.businessMappings,
+                sampleData: JSON.stringify(businessMappingData, null, 2).substring(0, 500)
+            });
+            return json({
+                success: true,
+                debug: true,
+                received: {
+                    hasBusinessMappings: !!businessMappingData?.businessMappings,
+                    businessMappingsCount: businessMappingData?.businessMappings?.length || 0,
+                    dataStructure: businessMappingData ? Object.keys(businessMappingData) : []
+                }
+            });
+        }
+
+        // Get credentials from session for other actions
+        const { accountId, apiKey } = locals.session.credentials || {};
+        if (!accountId || !apiKey) {
+            return json({ error: 'Credentials not set. Please configure in Settings.' }, { status: 401 });
+        }
+
+        // Handle different POST actions
+        if (action === 'create') {
+            // Create a single business mapping
+            return await createBusinessMapping(accountId, apiKey, businessMappingData);
+        } else if (action === 'upload') {
+            // Upload multiple business mappings (batch operation)
+            return await uploadBusinessMappings(accountId, apiKey, businessMappingData);
+        } else {
+            // Default behavior - search/filter cost categories
+            const { searchKey, sortType, sortOrder, limit, offset } = body;
+
+            // Build the Harness CCM API URL
+            const apiUrl = new URL('https://app.harness.io/ccm/api/business-mapping');
+            apiUrl.searchParams.set('accountIdentifier', accountId);
+            if (searchKey) apiUrl.searchParams.set('searchKey', searchKey);
+            apiUrl.searchParams.set('sortType', sortType || 'NAME');
+            apiUrl.searchParams.set('sortOrder', sortOrder || 'ASCENDING');
+            apiUrl.searchParams.set('limit', (limit || 0).toString());
+            apiUrl.searchParams.set('offset', (offset || 0).toString());
+
+            // Make the API call
+            const response = await fetch(apiUrl, {
+                method: 'GET', // Use GET for search/filter operations
+                headers: {
+                    'x-api-key': apiKey
+                }
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                return json({ error: errorData.message || 'Failed to fetch cost categories' }, { status: response.status });
+            }
+
+            const data = await response.json();
+            console.log('Cost categories fetched:', JSON.stringify(data, null, 2));
+            return json(data);
+        }
+    } catch (error) {
+        console.error('Error in POST cost categories:', error);
+        return json({ error: 'Internal server error: ' + error.message }, { status: 500 });
+    }
+}
+
+/** @type {import('./$types').RequestHandler} */
+export async function PUT({ request, locals }) {
     try {
         // Get credentials from session
         const { accountId, apiKey } = locals.session.credentials || {};
@@ -58,38 +376,12 @@ export async function POST({ request, locals }) {
         }
 
         // Get the request body
-        const body = await request.json();
-        const { searchKey, sortType, sortOrder, limit, offset } = body;
+        const businessMappingData = await request.json();
 
-        // Build the Harness CCM API URL
-        const apiUrl = new URL('https://app.harness.io/ccm/api/business-mapping');
-        apiUrl.searchParams.set('accountIdentifier', accountId);
-        if (searchKey) apiUrl.searchParams.set('searchKey', searchKey);
-        apiUrl.searchParams.set('sortType', sortType);
-        apiUrl.searchParams.set('sortOrder', sortOrder);
-        apiUrl.searchParams.set('limit', limit.toString());
-        apiUrl.searchParams.set('offset', offset.toString());
-
-        // Make the API call
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'x-api-key': apiKey,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body)
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            return json({ error: errorData.message || 'Failed to fetch cost categories' }, { status: response.status });
-        }
-
-        const data = await response.json();
-        console.log('Cost categories fetched:', JSON.stringify(data, null, 2)); // Debug log
-        return json(data);
+        // Update the business mapping
+        return await updateBusinessMapping(accountId, apiKey, businessMappingData);
     } catch (error) {
-        console.error('Error fetching cost categories:', error);
+        console.error('Error in PUT cost categories:', error);
         return json({ error: 'Internal server error: ' + error.message }, { status: 500 });
     }
 }
