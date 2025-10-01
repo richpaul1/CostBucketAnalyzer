@@ -23,6 +23,9 @@
     let selectedCategories = new Set();
     let existingCategories = new Map();
     let checkingExistence = false;
+    let editableJsonData = null;
+    let isJsonValid = true;
+    let jsonValidationError = null;
 
     // Load settings accountId on mount
     onMount(async () => {
@@ -36,6 +39,65 @@
             console.error('Failed to load settings:', err);
         }
     });
+
+    // JSON editing functions
+    function validateJsonOnInput() {
+        try {
+            if (editableJsonData) {
+                JSON.parse(editableJsonData);
+                isJsonValid = true;
+                jsonValidationError = null;
+            }
+        } catch (error) {
+            isJsonValid = false;
+            jsonValidationError = error.message;
+        }
+    }
+
+    function validateAndFormatJson() {
+        try {
+            if (editableJsonData) {
+                const parsed = JSON.parse(editableJsonData);
+                editableJsonData = JSON.stringify(parsed, null, 2);
+                isJsonValid = true;
+                jsonValidationError = null;
+            }
+        } catch (error) {
+            isJsonValid = false;
+            jsonValidationError = error.message;
+        }
+    }
+
+    function resetJsonToOriginal() {
+        editableJsonData = JSON.stringify(modifiedJsonData, null, 2);
+        isJsonValid = true;
+        jsonValidationError = null;
+    }
+
+    async function uploadEditedJson() {
+        if (!isJsonValid || !editableJsonData) {
+            uploadError = 'Please fix JSON validation errors before uploading';
+            return;
+        }
+
+        try {
+            uploadToHarnessStatus = 'uploading';
+            uploadError = null;
+
+            const parsedData = JSON.parse(editableJsonData);
+
+            // Update modifiedJsonData with the edited version
+            modifiedJsonData = parsedData;
+
+            // Proceed with normal upload process
+            await uploadToHarness();
+
+        } catch (error) {
+            uploadToHarnessStatus = 'error';
+            uploadError = 'Failed to upload edited JSON: ' + error.message;
+            console.error('Upload edited JSON error:', error);
+        }
+    }
 
     function handleOverlapModeChange(event) {
         console.log('Selected overlapMode:', event.target.value);
@@ -822,11 +884,63 @@
 
                         {#if modifiedJsonData}
                             <div class="preview-section">
-                                <h3>📋 Preview Modified Data</h3>
-                                <details>
-                                    <summary>Click to view modified JSON structure</summary>
-                                    <pre class="json-preview">{JSON.stringify(modifiedJsonData, null, 2).substring(0, 1000)}...</pre>
-                                </details>
+                                <h3>📋 Preview & Edit Modified Data</h3>
+                                <div class="json-editor-container">
+                                    <div class="editor-controls">
+                                        <button
+                                            class="btn btn-outline btn-sm"
+                                            on:click={() => editableJsonData = JSON.stringify(modifiedJsonData, null, 2)}
+                                        >
+                                            📝 Edit JSON
+                                        </button>
+                                        <button
+                                            class="btn btn-outline btn-sm"
+                                            on:click={validateAndFormatJson}
+                                        >
+                                            ✅ Validate & Format
+                                        </button>
+                                        <button
+                                            class="btn btn-outline btn-sm"
+                                            on:click={resetJsonToOriginal}
+                                        >
+                                            🔄 Reset to Original
+                                        </button>
+                                        <button
+                                            class="btn btn-primary btn-sm"
+                                            on:click={uploadEditedJson}
+                                            disabled={!isJsonValid || uploadToHarnessStatus === 'uploading'}
+                                        >
+                                            🚀 Upload Edited JSON
+                                        </button>
+                                    </div>
+
+                                    {#if editableJsonData !== null}
+                                        <div class="json-editor">
+                                            <textarea
+                                                bind:value={editableJsonData}
+                                                class="json-textarea"
+                                                class:error={!isJsonValid}
+                                                placeholder="Edit your JSON data here..."
+                                                on:input={validateJsonOnInput}
+                                            ></textarea>
+                                            {#if jsonValidationError}
+                                                <div class="validation-error">
+                                                    ❌ JSON Error: {jsonValidationError}
+                                                </div>
+                                            {/if}
+                                            {#if isJsonValid && editableJsonData}
+                                                <div class="validation-success">
+                                                    ✅ JSON is valid ({JSON.parse(editableJsonData).resource?.businessMappings?.length || 0} categories)
+                                                </div>
+                                            {/if}
+                                        </div>
+                                    {:else}
+                                        <div class="json-preview-readonly">
+                                            <h4>📄 Read-Only Preview</h4>
+                                            <pre class="json-preview">{JSON.stringify(modifiedJsonData, null, 2)}</pre>
+                                        </div>
+                                    {/if}
+                                </div>
                             </div>
                         {/if}
                     </div>
@@ -1534,6 +1648,93 @@
         max-height: 300px;
         overflow-y: auto;
         color: var(--text-primary);
+    }
+
+    /* JSON Editor Styles */
+    .json-editor-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .editor-controls {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 1rem;
+        background: var(--bg-primary);
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+    }
+
+    .btn-sm {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+
+    .json-editor {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .json-textarea {
+        width: 100%;
+        min-height: 400px;
+        max-height: 600px;
+        padding: 1rem;
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        font-size: 0.875rem;
+        line-height: 1.4;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        border: 2px solid var(--border-color);
+        border-radius: 6px;
+        resize: vertical;
+        transition: border-color 0.2s ease;
+    }
+
+    .json-textarea:focus {
+        outline: none;
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .json-textarea.error {
+        border-color: #ef4444;
+        background: #fef2f2;
+    }
+
+    .validation-error {
+        padding: 0.75rem;
+        background: #fef2f2;
+        color: #dc2626;
+        border: 1px solid #fecaca;
+        border-radius: 4px;
+        font-size: 0.875rem;
+        font-family: monospace;
+    }
+
+    .validation-success {
+        padding: 0.75rem;
+        background: #f0fdf4;
+        color: #16a34a;
+        border: 1px solid #bbf7d0;
+        border-radius: 4px;
+        font-size: 0.875rem;
+    }
+
+    .json-preview-readonly {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .json-preview-readonly h4 {
+        margin: 0;
+        color: var(--text-secondary);
+        font-size: 1rem;
     }
 
     .status-message.info {

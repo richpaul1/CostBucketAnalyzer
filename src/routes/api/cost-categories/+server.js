@@ -51,17 +51,89 @@ export async function GET({ url, locals }) {
 
 
 
+// Helper function to validate and fix business mapping data
+function validateAndFixBusinessMapping(businessMappingData) {
+    const fixedData = JSON.parse(JSON.stringify(businessMappingData)); // Deep clone
+    let issuesFixed = [];
+
+    // 1. Ensure main business mapping has uuid (generate if missing)
+    if (!fixedData.uuid) {
+        fixedData.uuid = crypto.randomUUID();
+        issuesFixed.push(`Generated missing main UUID: ${fixedData.uuid}`);
+    }
+
+    // 2. Ensure unallocatedCost field exists
+    if (!fixedData.unallocatedCost) {
+        fixedData.unallocatedCost = {
+            strategy: "DISPLAY_NAME",
+            label: "Unallocated"
+        };
+        issuesFixed.push('Added missing unallocatedCost field');
+    }
+
+    // 3. Fix cost targets
+    if (fixedData.costTargets && Array.isArray(fixedData.costTargets)) {
+        fixedData.costTargets.forEach((target, index) => {
+            // Generate UUID if missing or empty
+            if (!target.uuid || target.uuid === "") {
+                target.uuid = crypto.randomUUID();
+                issuesFixed.push(`Generated missing UUID for cost target "${target.name}": ${target.uuid}`);
+            }
+
+            // Ensure rules exist
+            if (!target.rules) {
+                target.rules = [];
+                issuesFixed.push(`Added missing rules array for cost target "${target.name}"`);
+            }
+
+            // Fix rules if they exist
+            if (target.rules && Array.isArray(target.rules)) {
+                target.rules.forEach((rule, ruleIndex) => {
+                    // Generate rule UUID if missing
+                    if (!rule.uuid) {
+                        rule.uuid = crypto.randomUUID();
+                        issuesFixed.push(`Generated missing UUID for rule ${ruleIndex + 1} in "${target.name}": ${rule.uuid}`);
+                    }
+
+                    // Ensure viewConditions exist
+                    if (!rule.viewConditions) {
+                        rule.viewConditions = [];
+                        issuesFixed.push(`Added missing viewConditions for rule in "${target.name}"`);
+                    }
+
+                    // Fix viewConditions
+                    if (rule.viewConditions && Array.isArray(rule.viewConditions)) {
+                        rule.viewConditions.forEach((condition, conditionIndex) => {
+                            // Generate condition UUID if missing
+                            if (!condition.uuid) {
+                                condition.uuid = crypto.randomUUID();
+                                issuesFixed.push(`Generated missing UUID for condition ${conditionIndex + 1} in "${target.name}": ${condition.uuid}`);
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    return { fixedData, issuesFixed };
+}
+
 // Helper function to create a single business mapping
 async function createBusinessMapping(accountId, apiKey, businessMappingData) {
     try {
-        // Preserve UUIDs - do not clean them for creation
-        const cleanedData = JSON.parse(JSON.stringify(businessMappingData)); // Deep clone without UUID removal
+        // Validate and fix the business mapping data
+        const { fixedData, issuesFixed } = validateAndFixBusinessMapping(businessMappingData);
+
+        if (issuesFixed.length > 0) {
+            console.log('🔧 Fixed business mapping issues:', issuesFixed);
+        }
 
         // Build the Harness CCM API URL for creating business mapping
         const apiUrl = new URL('https://app.harness.io/ccm/api/business-mapping');
         apiUrl.searchParams.set('accountIdentifier', accountId);
 
-        console.log('Creating business mapping (UUIDs preserved):', JSON.stringify(cleanedData, null, 2));
+        console.log('Creating business mapping (validated and fixed):', JSON.stringify(fixedData, null, 2));
 
         // Make the API call to create business mapping
         const response = await fetch(apiUrl, {
@@ -70,21 +142,36 @@ async function createBusinessMapping(accountId, apiKey, businessMappingData) {
                 'x-api-key': apiKey,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(cleanedData)
+            body: JSON.stringify(fixedData)
         });
 
         if (!response.ok) {
             const errorData = await response.json();
             console.error('Create business mapping error:', errorData);
+
+            // Enhance error message with fix information
+            let enhancedError = errorData.message || 'Failed to create business mapping';
+            if (issuesFixed.length > 0) {
+                enhancedError += `\n\nNote: The following issues were automatically fixed:\n${issuesFixed.map(fix => `• ${fix}`).join('\n')}`;
+            }
+
             return json({
-                error: errorData.message || 'Failed to create business mapping',
-                details: errorData
+                error: enhancedError,
+                details: errorData,
+                fixesApplied: issuesFixed
             }, { status: response.status });
         }
 
         const data = await response.json();
         console.log('Business mapping created successfully:', JSON.stringify(data, null, 2));
-        return json(data);
+
+        // Include fix information in success response
+        const successResponse = {
+            ...data,
+            fixesApplied: issuesFixed.length > 0 ? issuesFixed : undefined
+        };
+
+        return json(successResponse);
     } catch (error) {
         console.error('Error creating business mapping:', error);
         return json({ error: 'Internal server error: ' + error.message }, { status: 500 });
@@ -94,11 +181,18 @@ async function createBusinessMapping(accountId, apiKey, businessMappingData) {
 // Helper function to update a single business mapping
 async function updateBusinessMapping(accountId, apiKey, businessMappingData) {
     try {
+        // Validate and fix the business mapping data
+        const { fixedData, issuesFixed } = validateAndFixBusinessMapping(businessMappingData);
+
+        if (issuesFixed.length > 0) {
+            console.log('🔧 Fixed business mapping issues for update:', issuesFixed);
+        }
+
         // Build the Harness CCM API URL for updating business mapping
         const apiUrl = new URL('https://app.harness.io/ccm/api/business-mapping');
         apiUrl.searchParams.set('accountIdentifier', accountId);
 
-        console.log('Updating business mapping:', JSON.stringify(businessMappingData, null, 2));
+        console.log('Updating business mapping (validated and fixed):', JSON.stringify(fixedData, null, 2));
 
         // Make the API call to update business mapping
         const response = await fetch(apiUrl, {
@@ -107,7 +201,7 @@ async function updateBusinessMapping(accountId, apiKey, businessMappingData) {
                 'x-api-key': apiKey,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(businessMappingData)
+            body: JSON.stringify(fixedData)
         });
 
         if (!response.ok) {
